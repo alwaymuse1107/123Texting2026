@@ -716,7 +716,7 @@ section,
   background-color: var(--background-color);
   padding: 60px 0;
   scroll-margin-top: 90px;
-  overflow: clip;
+  overflow: visible
 }
 
 @media (max-width: 1199px) {
@@ -2625,7 +2625,7 @@ section,
 
 .contact .form-container-overlap {
   position: relative;
-  margin-top: -150px;
+  margin-top: 120px;
   margin-bottom: 60px;
   z-index: 10;
 }
