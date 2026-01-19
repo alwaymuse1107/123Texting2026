@@ -213,3 +213,122 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+// core-products.js — Sticky stepper scroll animation (no libs)
+(() => {
+  function init() {
+    const root = document.querySelector('#core-products');
+    if (!root) return;
+
+    const stage = root.querySelector('.cp-stage');
+    const track = root.querySelector('.cp-scroll-track');
+
+    const cards = [
+      root.querySelector('#cp-voice'),
+      root.querySelector('#cp-sms'),
+      root.querySelector('#cp-mms'),
+    ];
+
+    // Debug (you can remove later)
+    // console.log('[core-products] cards:', cards.map(Boolean), 'stage:', !!stage, 'track:', !!track);
+
+    if (!stage || !track || cards.some(c => !c)) {
+      // console.warn('[core-products] Missing DOM nodes. Check IDs/classes.');
+      return;
+    }
+
+    const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+    const smoothstep = (t) => t * t * (3 - 2 * t);
+
+    // Tune
+    const STEP_Y = 56;
+    const EXIT_Y = 34;
+    const MAX_BLUR = 10;
+
+    let ticking = false;
+
+    function update() {
+      // If track is display:none (mobile breakpoint), stop doing work
+      if (getComputedStyle(track).display === 'none') return;
+
+      const stageRect = stage.getBoundingClientRect();
+      const trackH = track.offsetHeight;
+
+      // Guard: if track height is 0, animation can't progress
+      if (trackH <= 1) return;
+
+      // timeline: from when stage enters -> until stage + track has been consumed
+      const start = window.scrollY + stageRect.top;
+      const end = start + trackH - window.innerHeight;
+
+      const denom = Math.max(1, end - start);
+      const p = clamp((window.scrollY - start) / denom, 0, 1);
+
+      // rail
+      root.style.setProperty('--rail', `${Math.round(p * 100)}%`);
+
+      // activeFloat 0..2
+      const af = p * (cards.length - 1);
+
+      cards.forEach((card, i) => {
+        const d = i - af;
+        const ad = Math.abs(d);
+
+        const near = clamp(1 - ad, 0, 1);
+        const s = smoothstep(near);
+
+        // visuals
+        const op = 0.20 + 0.80 * s;      // keep previews visible
+        const bl = (1 - s) * MAX_BLUR;
+        const sc = 0.985 + 0.015 * s;
+        const sh = 0.20 + 0.80 * s;
+
+        // stack moves UP as you scroll down
+        const base = i * STEP_Y;
+        const shift = af * STEP_Y;
+        const extraExit = d < 0 ? (1 - s) * EXIT_Y : 0;
+        const ty = (base - shift) - extraExit;
+
+        card.style.setProperty('--op', op.toFixed(3));
+        card.style.setProperty('--bl', `${bl.toFixed(2)}px`);
+        card.style.setProperty('--ty', `${ty.toFixed(2)}px`);
+        card.style.setProperty('--sc', sc.toFixed(4));
+        card.style.setProperty('--sh', sh.toFixed(3));
+
+        // keep header, collapse body for non-active
+        const isActive = ad < 0.45;
+        card.classList.toggle('is-active', isActive);
+        card.classList.toggle('is-compact', !isActive);
+
+        // ensure stacking order
+        card.style.zIndex = String(100 - Math.round(ad * 10) - i);
+      });
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    // init
+    update();
+  }
+
+  // Always wait for DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+document.querySelectorAll('#core-products .cp-card').length
+getComputedStyle(document.querySelector('#cp-mms')).getPropertyValue('--ty')
+
