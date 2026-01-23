@@ -769,7 +769,12 @@ section,
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-.hero {
+/* Header luôn ở lớp trên cùng */
+:root{
+  --header-h: 84px; /* chỉnh theo chiều cao header thật */
+}
+
+#hero.hero-waves-canvas {
   position: relative;
   min-height: 100vh;
   width: 100%;
@@ -779,42 +784,25 @@ section,
   padding: 100px 0;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 10px);
-  z-index: 1;
-}
 
-.hero .container,
-.hero .container-fluid {
+#hero.hero-waves-canvas .container,
+#hero.hero-waves-canvas .container-fluid {
   position: relative;
   z-index: 2;
 }
 
-.hero .content-col {
+#hero.hero-waves-canvas .content-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-right: 3rem;
 }
 
-@media (max-width: 991px) {
-  .hero .content-col {
-    padding-right: 15px;
-    margin-bottom: 3rem;
-  }
-}
-
-.hero .agency-name {
+#hero.hero-waves-canvas .agency-name {
   margin-bottom: 1.5rem;
 }
 
-.hero .agency-name h5 {
+#hero.hero-waves-canvas.agency-name h5 {
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -822,11 +810,13 @@ section,
   margin: 0;
 }
 
-.hero .main-heading {
+#hero.hero-waves-canvas .main-heading {
   margin-bottom: 2rem;
+    margin-top: 8px;
+
 }
 
-.hero .main-heading h1 {
+#hero.hero-waves-canvas .main-heading h1 {
   font-size: 5rem;
   font-weight: 400;
   line-height: 1.1;
@@ -852,7 +842,7 @@ section,
   }
 }
 
-.hero .divider {
+#hero.hero-waves-canvas .divider {
   width: 60%;
   height: 1px;
   background-color: color-mix(in srgb, var(--default-color), transparent 85%);
@@ -865,18 +855,18 @@ section,
   }
 }
 
-.hero .description {
+#hero.hero-waves-canvas .description {
   margin-bottom: 2.5rem;
 }
 
-.hero .description p {
+#hero.hero-waves-canvas .description p {
   font-size: 1rem;
   line-height: 1.7;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin: 0;
 }
 
-.hero .cta-button .btn {
+#hero.hero-waves-canvas .cta-button .btn {
   display: inline-flex;
   align-items: center;
   background-color: transparent;
@@ -890,137 +880,256 @@ section,
   transition: all 0.3s ease;
 }
 
-.hero .cta-button .btn span {
+#hero.hero-waves-canvas .cta-button .btn span {
   margin-right: 0.5rem;
 }
 
-.hero .cta-button .btn i {
+#hero.hero-waves-canvas .cta-button .btn i {
   font-size: 1.2rem;
   transition: transform 0.3s ease;
 }
 
-.hero .cta-button .btn:hover {
+#hero.hero-waves-canvas .cta-button .btn:hover {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: var(--contrast-color);
 }
 
-.hero .cta-button .btn:hover i {
+#hero.hero-waves-canvas .cta-button .btn:hover i {
   transform: translateX(5px);
 }
 
-.hero .visual-content {
+/* hero background không chạm phần header */
+.hero .hero-bg,
+.hero #heroWave{
+  top: var(--header-h);
+  height: calc(100% - var(--header-h));
+}
+
+.hero.hero-waves{
   position: relative;
-  width: 100%;
-  height: 100%;
+  background:#0A0A0A;
+  overflow:hidden;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;   /* <<< QUAN TRỌNG */
 }
 
-@media (max-width: 991px) {
-  .hero .visual-content {
-    flex-direction: column;
-  }
-}
-
-.hero .fluid-shape {
+/* Content lên trên */
+.hero.hero-waves .container,
+.hero.hero-waves .row,
+.hero.hero-waves .content-col,
+.hero.hero-waves .visual-content{
   position: relative;
-  width: 100%;
-  margin: 0 auto;
+  z-index: 2;
 }
 
-.hero .fluid-shape .fluid-img {
-  width: 100%;
-  height: auto;
-  animation: float 6s ease-in-out infinite;
+
+/* BG layer */
+.hero.hero-waves .hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+    opacity: 1;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-15px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+.hero-waves-canvas{
+  position: relative;
+  background:#0A0A0A;
+  overflow:hidden;
 }
 
-.hero .stats-card {
-  position: absolute;
-  bottom: 10%;
-  right: 0;
-  background-color: color-mix(in srgb, var(--surface-color), transparent 50%);
+#heroWave{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* content lên trên */
+#hero.hero-waves-canvas .container{ position:relative; z-index:3; }
+
+#hero.hero-waves-canvas .orange-glow{
+  position:absolute; inset:0;
+  z-index:0; pointer-events:none;
+  background:
+    radial-gradient(520px 420px at 14% 56%,
+      rgba(255,122,24,0.22) 0%,
+      rgba(255,122,24,0.12) 28%,
+      rgba(255,122,24,0.06) 48%,
+      rgba(255,122,24,0.00) 70%
+    ),
+    radial-gradient(360px 300px at 28% 62%,
+      rgba(255,122,24,0.14) 0%,
+      rgba(255,122,24,0.06) 40%,
+      rgba(255,122,24,0.00) 72%
+    );
+}
+
+#hero.hero-waves-canvas .hero-orange-dots.right{
+  opacity: .35; /* nhạt hơn */
+  -webkit-mask-image: radial-gradient(620px 480px at 82% 66%, #000 0%, #000 50%, transparent 78%);
+  mask-image: radial-gradient(620px 480px at 82% 66%, #000 0%, #000 50%, transparent 78%);
+  animation-duration: 11.5s; /* lệch nhịp cho tự nhiên */
+}
+
+
+/* Đảm bảo content nổi trên hết */
+#hero.hero-waves-canvas .container{ position: relative; z-index: 5; }
+
+/* BG wave nằm dưới */
+#hero.hero-waves-canvas .hero-bg,
+#hero.hero-waves-canvas #heroWave{ z-index: 0; }
+
+#hero.hero-waves-canvas .orange-glow{
+  position:absolute; inset:0;
+  z-index:1; pointer-events:none;
+  background:
+    radial-gradient(520px 420px at 14% 56%,
+      rgba(255,122,24,0.22) 0%,
+      rgba(255,122,24,0.12) 28%,
+      rgba(255,122,24,0.06) 48%,
+      rgba(255,122,24,0.00) 70%
+    ),
+    radial-gradient(360px 300px at 28% 62%,
+      rgba(255,122,24,0.14) 0%,
+      rgba(255,122,24,0.06) 40%,
+      rgba(255,122,24,0.00) 72%
+    );
+}
+
+/* cho BG “nằm phải” rõ hơn */
+.hero.hero-waves .hero-bg-svg{
+  width: 200%!important;  
+  height:100%;
+  display:block;
+  transform: translateX(10%); /* đẩy qua phải */
+  opacity: 1;
+}
+
+/* ===== Vertical motion for dotted wave ===== */
+.dots-band{
+  animation: dotsVertical 7.5s ease-in-out infinite;
+}
+.dots-band-2{
+  animation-duration: 10.5s;
+}
+
+@keyframes dotsVertical{
+  0%   { transform: translate3d(0,  6px,0) scale(1); }
+  50%  { transform: translate3d(0,-26px,0) scale(1.02); }
+  100% { transform: translate3d(0,  6px,0) scale(1); }
+}
+
+/* ===== Lines “running” + breath ===== */
+.lines .line{
+  fill:none;
+  stroke:url(#lineGrad);
+  stroke-width:1.35;
+  opacity:.55;
+  stroke-linecap:round;
+
+  stroke-dasharray: 6 14;
+  animation: dashMove 3.6s linear infinite,
+             lineBreath 6.5s ease-in-out infinite,
+             lineVertical 7.2s ease-in-out infinite; /* thêm nhún dọc */
+}
+
+.lines .l2{ animation-duration: 4.4s, 7.5s, 9.0s; opacity:.42; stroke-width:1.2; }
+.lines .l3{ animation-duration: 5.1s, 8.5s, 10.2s; opacity:.34; stroke-width:1.1; }
+.lines .l4{ animation-duration: 5.8s, 9.2s, 11.4s; opacity:.26; stroke-width:1.0; }
+
+.lines .accent{
+  stroke:#FF7A18;
+  stroke-width:1.6;
+  opacity:.70;
+  stroke-dasharray: 10 18;
+  animation: dashMove 2.9s linear infinite,
+             accentPulse 3.2s ease-in-out infinite,
+             lineVertical 8.2s ease-in-out infinite;
+}
+
+@keyframes dashMove{ to{ stroke-dashoffset:-220; } }
+@keyframes lineBreath{ 0%,100%{opacity:.42} 50%{opacity:.64} }
+@keyframes accentPulse{ 0%,100%{opacity:.45} 50%{opacity:.88} }
+@keyframes lineVertical{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-16px); }
+  100%{ transform: translateY(0px); }
+}
+
+/* ===== Hợp header: tạo “top clear” + left clean cho text ===== */
+.hero.hero-waves::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+
+  /* 1) Top clear cho header  2) Left clean cho text */
+  background:
+    linear-gradient(to bottom,
+      rgba(10,10,10,0.92) 0%,
+      rgba(10,10,10,0.55) 14%,
+      rgba(10,10,10,0.10) 34%,
+      rgba(10,10,10,0.00) 52%
+    ),
+    radial-gradient(900px 520px at 22% 45%,
+      rgba(10,10,10,0.05) 0%,
+      rgba(10,10,10,0.55) 55%,
+      rgba(10,10,10,0.80) 72%,
+      rgba(10,10,10,0.92) 100%
+    );
+}
+
+/* Divider + button theo palette */
+.hero.hero-waves .divider{
+  width:72px;height:3px;border-radius:999px;
+  background:#FF7A18;
+  margin:18px 0;
+}
+
+.hero.hero-waves .btn{
+  background:#FF7A18;
+  color:#0A0A0A;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.header, .navbar, #header{
+  position: relative;
+  z-index: 5;
+}
+
+/* optional: nền blur nhẹ để chữ header rõ */
+.header.is-sticky, #header.sticked{
+  background: rgba(10,10,10,0.55);
   backdrop-filter: blur(10px);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  border-radius: 10px;
-  padding: 1.5rem;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-@media (max-width: 991px) {
-  .hero .stats-card {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: 2rem;
-    width: 90%;
-  }
+#hero.hero-waves-canvas{
+  align-items: flex-start;      /* override .hero align-items:center */
+  padding: 0;                   /* override padding:100px 0 */
 }
 
-.hero .stats-card .stats-number h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1;
+#hero.hero-waves-canvas .container{
+  padding-top: calc(var(--header-h) + 1px);
+  margin-bottom: 60px;
 }
 
-.hero .stats-card .stats-label {
-  margin-top: 0.5rem;
+#hero.hero-waves-canvas .row{
+  align-items: flex-start;
 }
 
-.hero .stats-card .stats-label p {
-  font-size: 0.9rem;
-  margin: 0;
+#hero.hero-waves-canvas .content-col{
+  justify-content: flex-start;  /* override justify-content:center */
 }
 
-.hero .stats-card .stats-arrow {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-}
 
-.hero .stats-card .stats-arrow a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background-color: var(--accent-color);
-  border-radius: 50%;
-  color: var(--contrast-color);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.hero .stats-card .stats-arrow a:hover {
-  transform: translateY(-3px);
-  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
-}
-
-/* =========================
-   Core Products (Conflict-free)
-   JS-driven: --op --ty --sc --bl --sh --rail
-   Colors: #0A0A0A / #FFFFFF / #FF7A18
-   ========================= */
-
+/* CORE PRODUCTS — Phamily-like pinned stepper (Black/White/Orange) */
 .core-products{
   --black:#0A0A0A;
   --white:#FFFFFF;
@@ -1032,9 +1141,11 @@ section,
 
   background: var(--black);
   color: var(--white);
-  padding: 96px 0 120px;
+  padding: 0 0 120px;
   position: relative;
-  overflow: hidden;
+
+  /* IMPORTANT: do NOT use overflow:hidden here (can break sticky) */
+  overflow: visible;
 }
 
 /* Futuristic glow */
@@ -1052,38 +1163,54 @@ section,
 }
 
 .cp-container{
-  width: min(1180px, calc(100% - 40px));
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* giống gutter Bootstrap */
+  padding-left: var(--bs-gutter-x, 1.5rem);
+  padding-right: var(--bs-gutter-x, 1.5rem);
+}
+
+/* giống max-width container theo breakpoint (Bootstrap 5) */
+@media (min-width: 576px){ .core-products .cp-container{ max-width: 540px; } }
+@media (min-width: 768px){ .core-products .cp-container{ max-width: 720px; } }
+@media (min-width: 992px){ .core-products .cp-container{ max-width: 960px; } }
+@media (min-width: 1200px){ .core-products .cp-container{ max-width: 1140px; } }
+@media (min-width: 1400px){ .core-products .cp-container{ max-width: 1320px; } }
+
+/* Make cp-header align with hero's col-lg-7 */
+@media (min-width: 992px){
+  .core-products .cp-header{
+    width: 58.333333%; /* 7/12 */
+    margin-left: 0;
+  }
 }
 
 /* Header */
-.cp-header{
-  max-width: 78ch;
-  margin-bottom: 34px;
-}
+.cp-header{ max-width: 98ch; margin-bottom: 2px; }
 
 .cp-kicker{
-  margin: 0 0 14px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgba(255,255,255,.03);
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: .2px;
+
+  /* to hơn */
+  padding: 10px 16px !important;   /* tăng padding */
+  font-size: 26px !important;      /* chữ to hơn */
+  line-height: 1 !important;
+
+  border-radius: 999px !important; /* pill tròn */
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  background: rgba(255,255,255,0.06) !important;
 }
-.cp-kicker::before{
-  content:"";
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--orange);
-  box-shadow: 0 0 18px rgba(255,122,24,.6);
+.core-products .cp-kicker::before{
+  width: 15px !important;
+  height: 15px !important;
+  margin-right: 10px !important;
+  border-radius: 50% !important;
+  background: #FF7A18 !important;
+  content: "" !important;
+  display: inline-block !important;
 }
 
 .cp-title{
@@ -1092,24 +1219,25 @@ section,
   line-height: 1.04;
   letter-spacing: -0.02em;
 }
-
-.cp-desc{
-  margin: 0 0 18px;
-  color: var(--muted);
-}
+.cp-desc{ margin: 0; color: var(--muted); }
 
 /* Stage */
 .cp-stage{
   position: relative;
   border-top: 1px solid rgba(255,255,255,.08);
-  padding-top: 26px;
+}
+
+/* “short timeline” (no need huge scroll) */
+.cp-scroll-track{
+  height: 200vh; /* tune 130–190vh */
+  display:block;
 }
 
 /* Rail */
 .cp-rail{
   position: absolute;
   left: 0;
-  top: 26px;
+  top: 10px;
   bottom: 0;
   width: 14px;
   display: flex;
@@ -1123,6 +1251,7 @@ section,
   background: rgba(255,255,255,.10);
   border-radius: 999px;
 }
+
 .cp-rail-fill{
   position:absolute;
   top: 0;
@@ -1133,81 +1262,46 @@ section,
   box-shadow: 0 0 20px rgba(255,122,24,.35);
 }
 
-/* Sticky frame */
 .cp-sticky{
   position: sticky;
   top: 86px;
   height: calc(100vh - 120px);
   min-height: 560px;
-  display: grid;
-  place-items: center;
+
+  display: flex;
+  align-items: center;
 }
 
-/* Card (ONLY JS drives visuals: no state transforms to avoid conflicts) */
-.cp-card{
+.cp-stack{
   width: min(980px, 100%);
+  margin: 0 auto;
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.10);
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-  padding: 24px 24px 18px;
-  left: 0;
-  right: 0;
-  top: 0;
-  margin: 0 auto;
-  position: absolute;
-  
-  opacity: var(--op);
-  transform: translateY(var(--ty)) scale(var(--sc));
-  filter: blur(var(--bl));
-  box-shadow: 0 24px 80px rgba(0,0,0, calc(.55 * var(--sh)));
-
-  transition: none; /* JS-driven */
-  will-change: transform, opacity, filter, box-shadow;
-  pointer-events: none;
-
-  z-index: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  padding: 22px;
 }
 
-/* Always show a stacked preview (even before JS runs) */
-#cp-voice{ --ty: 0px;   --op: 1;   --bl: 0px;  --sc: 1;     --sh: 1;    z-index: 3; }
-#cp-sms  { --ty: 56px;  --op: .28; --bl: 6px;  --sc: .99;  --sh: .45;  z-index: 2; }
-#cp-mms  { --ty: 112px; --op: .22; --bl: 8px;  --sc: .985; --sh: .35;  z-index: 1; }
 
+/* Cards */
+.cp-card{
+  position: relative;
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  padding: 18px 18px 14px;
 
-#cp-sms.is-compact .cp-body,
-#cp-mms.is-compact .cp-body{ max-height:0; opacity:0; overflow:hidden; }
-/* States: only for interactivity + stacking order */
-.cp-card.is-active{
-  pointer-events: auto;
-  z-index: 3;
-}
-.cp-card.is-compact{
-  z-index: 2;
-}
-
-/* Subtle highlight + glow */
-.cp-card::before{
-  content:"";
-  position:absolute;
-  left: 12px;
-  right: 12px;
-  top: 10px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,122,24,.35), transparent);
-  opacity: .55;
-  pointer-events:none;
-}
-.cp-card::after{
-  content:"";
-  position:absolute;
-  inset:-40px;
-  background: radial-gradient(420px 260px at 20% 10%, rgba(255,122,24,.14), transparent 60%);
-  filter: blur(14px);
-  opacity: .55;
-  pointer-events:none;
+  /* JS controls */
+  opacity: var(--op, 1);
+  transform: translateY(var(--ty, 0px));
+  filter: blur(var(--bl, 0px));
+  box-shadow: 0 18px 60px rgba(0,0,0, calc(.45 * var(--sh, 1)));
+  will-change: transform, opacity, filter;
 }
 
-/* Card head + body */
+.cp-card + .cp-card{ margin-top: 16px; }
+
+/* head always visible */
 .cp-card-head{
   display:flex;
   align-items:center;
@@ -1229,14 +1323,12 @@ section,
   box-shadow: 0 0 22px rgba(255,122,24,.22);
   flex: 0 0 auto;
 }
-
 .cp-card-titles{
   display:flex;
   align-items:center;
   gap: 10px;
   margin-left: auto;
 }
-
 .cp-icon{
   width: 38px;
   height: 38px;
@@ -1246,41 +1338,19 @@ section,
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
 }
+.cp-card-title{ margin: 0; font-size: 22px; letter-spacing: -0.01em; }
 
-.cp-card-title{
-  margin: 0;
-  font-size: 22px;
-  letter-spacing: -0.01em;
-}
-
-/* Body collapse behavior (Phamily-like: keep head, hide body) */
+/* collapse body nhưng giữ header */
 .cp-body{
-  transform-origin: top;
-  max-height: 1200px;
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-  transition:
-    max-height .35s ease,
-    opacity .35s ease,
-    transform .35s ease,
-    filter .35s ease;
-}
-
-.cp-card.is-compact .cp-body{
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-6px);
-  filter: blur(6px);
+  max-height: calc(var(--open, 1) * 800px);
+  opacity: var(--open, 1);
+  transform: translateY(calc((1 - var(--open, 1)) * -8px));
+  filter: blur(calc((1 - var(--open, 1)) * 6px));
   overflow: hidden;
+  transition: none; /* JS-driven */
 }
 
-/* Content styles */
-.cp-card-desc{
-  margin: 0 0 14px;
-  color: var(--muted);
-  max-width: 95ch;
-}
+.cp-card-desc{ margin: 0 0 14px; color: var(--muted); max-width: 95ch; }
 
 .cp-bullets{
   margin: 0 0 14px;
@@ -1290,13 +1360,11 @@ section,
   grid-template-columns: 1fr 1fr;
   gap: 10px 18px;
 }
-
 .cp-bullets li{
   padding-left: 14px;
   position: relative;
   color: rgba(255,255,255,.82);
 }
-
 .cp-bullets li::before{
   content:"";
   width: 6px;
@@ -1316,17 +1384,13 @@ section,
   display: grid;
   gap: 6px;
 }
-
 .cp-usecases-label{
   font-size: 12px;
   color: var(--muted2);
   text-transform: uppercase;
   letter-spacing: .12em;
 }
-
-.cp-usecases-value{
-  color: rgba(255,255,255,.86);
-}
+.cp-usecases-value{ color: rgba(255,255,255,.86); }
 
 .cp-link{
   margin-top: 14px;
@@ -1337,36 +1401,36 @@ section,
   color: var(--white);
   font-weight: 650;
 }
-
-.cp-link span{
-  color: var(--orange);
-  transition: transform .25s ease;
-}
+.cp-link span{ color: var(--orange); transition: transform .25s ease; }
 .cp-link:hover span{ transform: translateX(3px); }
 
-/* Scroll timeline */
-.cp-scroll-track{
-  height: 320vh;
+/* subtle highlight */
+.cp-card::before{
+  content:"";
+  position:absolute;
+  left: 12px;
+  right: 12px;
+  top: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,122,24,.35), transparent);
+  opacity: .55;
+  pointer-events:none;
 }
 
-
-/* Responsive */
+/* Responsive: no sticky stepper */
 @media (max-width: 860px){
-  .cp-sticky{
-    position: relative;
-    top: auto;
-    height: auto;
-    min-height: auto;
-    display: block;
-  }
+  .cp-sticky{ position: relative; top:auto; height:auto; min-height:auto; display:block; }
+  .cp-stack{ height:auto; }
   .cp-card{
     position: relative;
+    top:auto;
+    transform: none;
     opacity: 1;
     filter: none;
-    transform: none;
     pointer-events: auto;
     margin: 14px 0;
   }
+  .cp-body{ --open: 1; max-height: 999px; opacity:1; transform:none; filter:none; }
   .cp-bullets{ grid-template-columns: 1fr; }
   .cp-scroll-track{ display:none; }
   .cp-rail{ display:none; }
@@ -1656,150 +1720,193 @@ section,
   }
 }
 
-.services .service-card {
-  padding: 40px 40px 40px 40px;
-  margin-bottom: 30px;
-  border: 2px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  transition: all 0.3s ease;
+/* ==============================
+   Neo Privacy Cards (Orange theme)
+   Paste at END of main.css
+============================== */
+
+.neo-privacy-card{
+  position: relative;
+  border-radius: 22px;
+  padding: 26px 26px 22px;
+  min-height: 220px;
+
+  /* nền giống hình: tối nhưng có halo nhẹ ở góc */
+  background:
+ radial-gradient(120% 120% at 18% 0%,
+      rgba(255,122,24,0.10),
+      rgba(0,0,0,0) 55%),
+    rgba(10,10,10,0.72) !important;
+
+  /* double border: outer + inner */
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    0 0 0 1px rgba(0,0,0,.2);
+
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
 
-.services .service-card .service-icon {
-  margin-bottom: 25px;
-  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  width: 64px;
-  height: 64px;
+/* inner highlight ring (like glass edge) */
+.neo-privacy-card::after{
+  content:"";
+  position:absolute;
+  inset: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.06);
+  pointer-events:none;
 }
 
-.services .service-card .service-icon i {
-  font-size: 32px;
-  color: var(--accent-color);
-  transition: all 0.3s ease;
+/* pixel-ish noise overlay (giống reference hơn grain) */
+.neo-privacy-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity: .22;
+  mix-blend-mode: overlay;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.12) 0 1px, transparent 2px) 0 0/18px 18px,
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.10) 0 1px, transparent 2px) 0 0/22px 22px,
+    radial-gradient(circle at 40% 80%, rgba(255,122,24,.10) 0 1px, transparent 2px) 0 0/26px 26px;
 }
 
-.services .service-card h3 {
-  font-size: 28px;
-  margin-bottom: 15px;
-  font-weight: 700;
+/* ==============================
+   SERVICES SECTION – BLACK BG
+============================== */
+
+#solutions.solutions.section{
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(255,122,24,0.06), transparent 60%),
+    #0A0A0A;
 }
 
-.services .service-card h3 a {
-  color: var(--heading-color);
-  transition: color 0.3s ease;
+/* nếu template có pseudo background */
+#solutions.solutions.section::before,
+#solutions.solutions.section::after{
+  display: none !important;
 }
 
-.services .service-card h3 a span {
-  display: block;
+/* đảm bảo text trong section là sáng */
+#solutions .section-title,
+#solutions h2,
+#solutions h3,
+#solutions p{
+  color: #FFFFFF;
 }
 
-.services .service-card h3 a:hover {
-  color: var(--accent-color);
+/* icon badge giống reference: dark square + viền cam nhẹ */
+.neo-privacy-icon{
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: rgba(255,122,24,.07);
+  border: 1px solid rgba(255,122,24,.28);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
+
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
 }
 
-.services .service-card p {
-  color: var(--default-color);
-  transition: color 0.3s ease;
-  margin-bottom: 0;
+.neo-privacy-icon i{
+  font-size: 20px;
+  color: #FF7A18;
 }
 
-.services .service-card .card-action {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--accent-color);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
+/* typography đúng vibe */
+.neo-privacy-text{ position: relative; z-index: 1; }
+
+.neo-privacy-title{
+  font-size: 18px;
+  font-weight: 600;
+  color: #FF7A18;
+  margin-bottom: 6px;
 }
 
-.services .service-card .card-action i {
-  font-size: 24px;
-  color: var(--contrast-color);
-  transition: transform 0.3s ease;
+.neo-privacy-desc{
+  font-size: 15px;
+  line-height: 1.55;
+  color: #FFFFFF;
+  opacity: .90;
+  max-width: 34ch;
 }
 
-.services .service-card .card-action:hover i {
-  transform: rotate(45deg);
+.neo-privacy-meta{
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #9CA3AF;
+  opacity: .95;
+  max-width: 38ch;
 }
 
-.services .service-card::before {
+
+.neo-privacy-card{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover: nâng nhẹ + glow cam rất subtle (giống reference) */
+.neo-privacy-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,122,24,.35);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    0 22px 60px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,122,24,.14);
+}
+
+/* Hover icon: halo nhẹ */
+.neo-privacy-card:hover .neo-privacy-icon{
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.25),
+    0 0 0 6px rgba(255,122,24,.10);
+}
+
+/* dot pulse layer */
+.neo-privacy-card::before{
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--surface-color);
-  clip-path: polygon(70% 0, 100% 30%, 100% 100%, 0 100%, 0 0);
-  z-index: -1;
+
+  /* vị trí dot (gần icon) */
+  top: 28px;
+  left: 28px;
+
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+
+  /* dot + vòng lan tỏa */
+  background:
+    radial-gradient(circle,
+      rgba(255,122,24,0.55) 0%,
+      rgba(255,122,24,0.45) 20%,
+      rgba(255,122,24,0.25) 35%,
+      rgba(255,122,24,0.10) 55%,
+      rgba(255,122,24,0.00) 70%
+    );
+
+  transform: scale(0);
   opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+
+  transition:
+    transform 0.8s ease-out,
+    opacity 0.6s ease-out;
 }
 
-.services .service-card:hover {
-  border-color: transparent;
-}
-
-.services .service-card:hover::before {
+/* hover trigger */
+.neo-privacy-card:hover::before{
+  transform: scale(18); /* độ lan */
   opacity: 1;
-  visibility: visible;
-  background-color: var(--surface-color);
 }
-
-.services .service-card:hover h3 a {
-  color: var(--accent-color);
-}
-
-.services .service-card:hover h3 a:hover {
-  color: var(--accent-color);
-}
-
-.services .service-card:hover p {
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-}
-
-.services .service-card:hover .card-action {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.services .service-card:hover .service-icon i {
-  transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-  .services .service-card {
-    padding: 150px 25px 25px;
-  }
-
-  .services .service-card h3 {
-    font-size: 24px;
-  }
-
-  .services .service-card .service-icon {
-    position: absolute;
-    top: 40px;
-    left: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  .services {
-    padding: 70px 0 50px;
-  }
-}
-
 /*--------------------------------------------------------------
 # Steps Section
 --------------------------------------------------------------*/
@@ -4132,11 +4239,176 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
 /* Custom background for services section */
-.bg-gray-9ca3af{
-  background-color: #ffffff !important;
+
+
+/* =========================================
+   SERVICES – AMBIENT ORANGE WAVES HERO
+========================================= */
+
+#services.services.section{
+  position: relative;
+  overflow: hidden;
+  background: #0A0A0A !important;
+  padding: 160px 0 140px;
+}
+
+/* TEXT LAYER */
+#services .service-header{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+#services .service-heading{
+  font-size: 3rem;
+  line-height: 1.15;
+}
+
+#services .service-heading div:first-child{
+  color: #FFFFFF;
+}
+
+#services .service-heading span{
+  color: #FF7A18;
+}
+
+/* =========================
+   AMBIENT ORANGE WAVES
+========================= */
+
+/* vòng sóng chính */
+/* ==============================
+   SERVICES – AMBIENT RINGS (ORANGE)
+============================== */
+
+#services.services.section{
+  position: relative;
+  overflow: hidden;
+  background: #0A0A0A !important;
+  padding: 160px 0 140px;
+}
+
+/* text center giống reference */
+#services .service-header{
+  position: relative;
+  z-index: 5;
+  align-items: center;            /* center dọc */
+  justify-content: center;        /* center ngang */
+  text-align: center;
+}
+
+#services .service-heading div:first-child{
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.55);
+}
+#services .service-heading span{
+  color: #FF7A18 !important;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.55);
+}
+
+/* LAYER 1: rings */
+#services::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  z-index:1;
+  pointer-events:none;
+
+  /* vòng sóng */
+  background:
+    repeating-radial-gradient(
+      circle at 50% 42%,
+      rgba(255,122,24,0.00) 0px,
+      rgba(255,122,24,0.00) 26px,
+      rgba(255,122,24,0.18) 34px,
+      rgba(255,122,24,0.00) 46px
+    );
+
+  /* làm mềm giống reference */
+  filter: blur(10px);
+  opacity: .85;
+  transform: scale(1.05);
+}
+
+/* LAYER 2: core glow (để tâm sáng nhẹ) */
+#services::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 50% 42%,
+      rgba(255,122,24,0.18) 0%,
+      rgba(255,122,24,0.10) 18%,
+      rgba(255,122,24,0.06) 30%,
+      rgba(255,122,24,0.00) 56%
+    );
+
+  opacity: .9;
+}
+
+/* dark vignette để vòng nổi hơn */
+#services.services.section .container{
+  position: relative;
+  z-index: 6;
+}
+
+#services.services.section{
+  box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.05);
+}
+
+#services.services.section::marker{ content:""; } /* harmless */
+
+
+/* Chỉ áp dụng cho section có id="services" */
+section#services{
+  padding-block: 28px !important; /* giảm chiều cao section */
+}
+
+/* Nếu còn dư khoảng trống do header/margin */
+section#services .service-header{
+    position: relative;
+  z-index: 2;
+  margin-bottom: 0 !important;
+}
+
+
+section#services .service-heading{
+    position: relative;
+  z-index: 2;
+  margin: 0 !important;
+  line-height: 1.25;
+}
+
+/* Nếu container bị padding top/bottom */
+section#services .container{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#services .slide-in-left{
+  opacity: 0;
+  transform: translateX(-80px);
+  transition:
+    transform 0.9s cubic-bezier(.22,.61,.36,1),
+    opacity 0.6s ease;
+  will-change: transform, opacity;
+}
+
+/* khi active */
+#services .slide-in-left.is-visible{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#services .service-heading > div:first-child{
+  transition-delay: 1.25s;
+}
+
+#services .service-heading > div:last-child{
+  transition-delay: 1.25s;
 }
