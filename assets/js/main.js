@@ -1,61 +1,67 @@
 /**
-* Template Name: Strategy
-* Template URL: https://bootstrapmade.com/strategy-bootstrap-agency-template/
-* Updated: Jun 06 2025 with Bootstrap v5.3.6
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+ * Template Name: Strategy
+ * Template URL: https://bootstrapmade.com/strategy-bootstrap-agency-template/
+ * Updated: Jun 06 2025 with Bootstrap v5.3.6
+ * Author: BootstrapMade.com
+ * License: https://bootstrapmade.com/license/
+ */
 
-(function() {
+(function () {
   "use strict";
 
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    const selectBody = document.querySelector("body");
+    const selectHeader = document.querySelector("#header");
+    if (
+      !selectHeader.classList.contains("scroll-up-sticky") &&
+      !selectHeader.classList.contains("sticky-top") &&
+      !selectHeader.classList.contains("fixed-top")
+    )
+      return;
+    window.scrollY > 100
+      ? selectBody.classList.add("scrolled")
+      : selectBody.classList.remove("scrolled");
   }
 
-  document.addEventListener('scroll', toggleScrolled);
-  window.addEventListener('load', toggleScrolled);
+  document.addEventListener("scroll", toggleScrolled);
+  window.addEventListener("load", toggleScrolled);
 
   /**
    * Mobile nav toggle
    */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
 
   function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    document.querySelector("body").classList.toggle("mobile-nav-active");
+    mobileNavToggleBtn.classList.toggle("bi-list");
+    mobileNavToggleBtn.classList.toggle("bi-x");
   }
   if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+    mobileNavToggleBtn.addEventListener("click", mobileNavToogle);
   }
 
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
+  document.querySelectorAll("#navmenu a").forEach((navmenu) => {
+    navmenu.addEventListener("click", () => {
+      if (document.querySelector(".mobile-nav-active")) {
         mobileNavToogle();
       }
     });
-
   });
 
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+  document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
+    navmenu.addEventListener("click", function (e) {
       e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      this.parentNode.classList.toggle("active");
+      this.parentNode.nextElementSibling.classList.toggle("dropdown-active");
       e.stopImmediatePropagation();
     });
   });
@@ -63,9 +69,9 @@
   /**
    * Preloader
    */
-  const preloader = document.querySelector('#preloader');
+  const preloader = document.querySelector("#preloader");
   if (preloader) {
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       preloader.remove();
     });
   }
@@ -73,23 +79,25 @@
   /**
    * Scroll top button
    */
-  let scrollTop = document.querySelector('.scroll-top');
+  let scrollTop = document.querySelector(".scroll-top");
 
   function toggleScrollTop() {
     if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+      window.scrollY > 100
+        ? scrollTop.classList.add("active")
+        : scrollTop.classList.remove("active");
     }
   }
-  scrollTop.addEventListener('click', (e) => {
+  scrollTop.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   });
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+  window.addEventListener("load", toggleScrollTop);
+  document.addEventListener("scroll", toggleScrollTop);
 
   /**
    * Animation on scroll function and init
@@ -97,20 +105,20 @@
   function aosInit() {
     AOS.init({
       duration: 600,
-      easing: 'ease-in-out',
+      easing: "ease-in-out",
       once: true,
-      mirror: false
+      mirror: false,
     });
   }
-  window.addEventListener('load', aosInit);
+  window.addEventListener("load", aosInit);
 
   /**
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+        swiperElement.querySelector(".swiper-config").innerHTML.trim(),
       );
 
       if (swiperElement.classList.contains("swiper-tab")) {
@@ -127,55 +135,69 @@
    * Initiate glightbox
    */
   const glightbox = GLightbox({
-    selector: '.glightbox'
+    selector: ".glightbox",
   });
 
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+  document.querySelectorAll(".isotope-layout").forEach(function (isotopeItem) {
+    let layout = isotopeItem.getAttribute("data-layout") ?? "masonry";
+    let filter = isotopeItem.getAttribute("data-default-filter") ?? "*";
+    let sort = isotopeItem.getAttribute("data-sort") ?? "original-order";
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
+    imagesLoaded(isotopeItem.querySelector(".isotope-container"), function () {
+      initIsotope = new Isotope(
+        isotopeItem.querySelector(".isotope-container"),
+        {
+          itemSelector: ".isotope-item",
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort,
+        },
+      );
+    });
+
+    isotopeItem
+      .querySelectorAll(".isotope-filters li")
+      .forEach(function (filters) {
+        filters.addEventListener(
+          "click",
+          function () {
+            isotopeItem
+              .querySelector(".isotope-filters .filter-active")
+              .classList.remove("filter-active");
+            this.classList.add("filter-active");
+            initIsotope.arrange({
+              filter: this.getAttribute("data-filter"),
+            });
+            if (typeof aosInit === "function") {
+              aosInit();
+            }
+          },
+          false,
+        );
       });
-    });
-
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
-    });
-
   });
 
   /**
    * Frequently Asked Questions Toggle
    */
-  document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header').forEach((faqItem) => {
-    faqItem.addEventListener('click', () => {
-      faqItem.parentNode.classList.toggle('faq-active');
+  document
+    .querySelectorAll(
+      ".faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header",
+    )
+    .forEach((faqItem) => {
+      faqItem.addEventListener("click", () => {
+        faqItem.parentNode.classList.toggle("faq-active");
+      });
     });
-  });
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener("load", function (e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
@@ -183,7 +205,7 @@
           let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
           window.scrollTo({
             top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }, 100);
       }
@@ -193,59 +215,63 @@
   /**
    * Navmenu Scrollspy
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  let navmenulinks = document.querySelectorAll(".navmenu a");
 
   function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
+    navmenulinks.forEach((navmenulink) => {
       if (!navmenulink.hash) return;
       let section = document.querySelector(navmenulink.hash);
       if (!section) return;
       let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
+      if (
+        position >= section.offsetTop &&
+        position <= section.offsetTop + section.offsetHeight
+      ) {
+        document
+          .querySelectorAll(".navmenu a.active")
+          .forEach((link) => link.classList.remove("active"));
+        navmenulink.classList.add("active");
       } else {
-        navmenulink.classList.remove('active');
+        navmenulink.classList.remove("active");
       }
-    })
+    });
   }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
-
+  window.addEventListener("load", navmenuScrollspy);
+  document.addEventListener("scroll", navmenuScrollspy);
 })();
 
 // core-products.js — Sticky stepper scroll animation (no libs)
 (() => {
-  const clamp = (n,a,b) => Math.max(a, Math.min(b,n));
-  const smooth = (t) => t*t*(3-2*t);
+  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+  const smooth = (t) => t * t * (3 - 2 * t);
 
-  function init(){
-    const root = document.querySelector('#core-products');
-    if(!root) return;
+  function init() {
+    const root = document.querySelector("#core-products");
+    if (!root) return;
 
-    const track = root.querySelector('.cp-scroll-track');
-    const cards = [...root.querySelectorAll('.cp-card')];
-    if(!track || cards.length < 3) return;
+    const track = root.querySelector(".cp-scroll-track");
+    const cards = [...root.querySelectorAll(".cp-card")];
+    if (!track || cards.length < 3) return;
 
     // tune giống Phamily: không kéo nhiều nhưng vẫn có dwell
     const SPEED = 1.15;
 
-    function update(){
-      if(getComputedStyle(track).display === 'none') return;
+    function update() {
+      if (getComputedStyle(track).display === "none") return;
 
       const rect = track.getBoundingClientRect();
       const denom = Math.max(1, track.offsetHeight - window.innerHeight);
-      const pRaw = clamp((-rect.top)/denom, 0, 1);
+      const pRaw = clamp(-rect.top / denom, 0, 1);
       const p = clamp(pRaw * SPEED, 0, 1);
 
-            // 0..2
-            let af; // 0..2
+      // 0..2
+      let af; // 0..2
 
       // 0..0.40: step1 -> step2 (0 -> 1)
       // 0.40..0.78: HOLD step2 (1)
       // 0.78..1.00: step2 -> step3 (1 -> 2)
-      if (p < 0.40) {
-        const t = p / 0.40;
+      if (p < 0.4) {
+        const t = p / 0.4;
         af = 0 + t * 1;
       } else if (p < 0.78) {
         af = 1;
@@ -254,8 +280,8 @@
         af = 1 + t * 1;
       }
 
-      cards.forEach((card,i)=>{
-        const d  = i - af;         // 0 = active
+      cards.forEach((card, i) => {
+        const d = i - af; // 0 = active
         const ad = Math.abs(d);
 
         // closeness
@@ -263,41 +289,44 @@
         const s = smooth(near);
 
         // Visuals: active rõ, trên mờ nhẹ, dưới mờ nhẹ
-        const op = 0.35 + 0.65*s;            // preview vẫn nhìn rõ
-        const bl = (1 - s) * 1;              // blur nhẹ
-        const sh = 0.25 + 0.75*s;
+        const op = 0.35 + 0.65 * s; // preview vẫn nhìn rõ
+        const bl = (1 - s) * 1; // blur nhẹ
+        const sh = 0.25 + 0.75 * s;
 
         // Stack dọc: shift nhẹ theo active, không chồng card
         const ty = d * 10 + (d < 0 ? -6 : 0); // card trên lùi lên chút
 
         // Body open/close: chỉ active mở
-        const open = smooth(clamp(1 - ad/0.55, 0, 1));
+        const open = smooth(clamp(1 - ad / 0.55, 0, 1));
 
-        card.style.setProperty('--op', op.toFixed(3));
-        card.style.setProperty('--bl', `${bl.toFixed(2)}px`);
-        card.style.setProperty('--ty', `${ty.toFixed(2)}px`);
-        card.style.setProperty('--sh', sh.toFixed(3));
-        card.style.setProperty('--open', open.toFixed(3));
+        card.style.setProperty("--op", op.toFixed(3));
+        card.style.setProperty("--bl", `${bl.toFixed(2)}px`);
+        card.style.setProperty("--ty", `${ty.toFixed(2)}px`);
+        card.style.setProperty("--sh", sh.toFixed(3));
+        card.style.setProperty("--open", open.toFixed(3));
       });
 
       const railP = clamp(af / (cards.length - 1), 0, 1);
-      root.style.setProperty('--rail', `${Math.round(railP * 100)}%`);
+      root.style.setProperty("--rail", `${Math.round(railP * 100)}%`);
     }
 
     let ticking = false;
-    function onScroll(){
-      if(ticking) return;
+    function onScroll() {
+      if (ticking) return;
       ticking = true;
-      requestAnimationFrame(()=>{ update(); ticking=false; });
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
     }
 
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     update();
   }
 
-  if(document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else init();
 })();
 
@@ -314,7 +343,9 @@
 
   const ctx = canvas.getContext("2d", { alpha: true });
 
-  let w = 0, h = 0, dpr = 1;
+  let w = 0,
+    h = 0,
+    dpr = 1;
   let t = 0;
 
   function resize() {
@@ -329,10 +360,10 @@
 
   // helper: rgba from hex + alpha
   function rgba(hex, a) {
-    const c = hex.replace("#","").trim();
-    const r = parseInt(c.slice(0,2),16);
-    const g = parseInt(c.slice(2,4),16);
-    const b = parseInt(c.slice(4,6),16);
+    const c = hex.replace("#", "").trim();
+    const r = parseInt(c.slice(0, 2), 16);
+    const g = parseInt(c.slice(2, 4), 16);
+    const b = parseInt(c.slice(4, 6), 16);
     return `rgba(${r},${g},${b},${a})`;
   }
 
@@ -343,13 +374,13 @@
     const cy = h * 0.58;
     const dx = (x - cx) / (w * 0.55);
     const dy = (y - cy) / (h * 0.55);
-    const r = Math.sqrt(dx*dx + dy*dy);
+    const r = Math.sqrt(dx * dx + dy * dy);
     // radial fade
-    let a = 1 - Math.max(0, (r - 0.25) / (0.75));
+    let a = 1 - Math.max(0, (r - 0.25) / 0.75);
     // extra fade to the left
-    a *= Math.max(0, (x - w*0.25) / (w*0.75));
+    a *= Math.max(0, (x - w * 0.25) / (w * 0.75));
     // top clear (header area)
-    const topFade = Math.min(1, Math.max(0, (y - h*0.18) / (h*0.22)));
+    const topFade = Math.min(1, Math.max(0, (y - h * 0.18) / (h * 0.22)));
     a *= topFade;
     return Math.max(0, Math.min(1, a));
   }
@@ -358,12 +389,12 @@
     ctx.clearRect(0, 0, w, h);
 
     // dotted wave surface
-    const cols = 72;                 // density ngang
-    const rows = 26;                 // density dọc
-    const xStart = w * 0.35;         // bắt đầu từ giữa -> phải
-    const xEnd = w * 1.08;           // vượt ra ngoài phải
+    const cols = 72; // density ngang
+    const rows = 26; // density dọc
+    const xStart = w * 0.35; // bắt đầu từ giữa -> phải
+    const xEnd = w * 1.08; // vượt ra ngoài phải
     const yBase = h * 0.58;
-    const amp = h * 0.10;
+    const amp = h * 0.1;
 
     // vertical motion (move along Y)
     const yShift = Math.sin(t * 0.0012) * (h * 0.025);
@@ -377,17 +408,17 @@
         const depth = Math.pow(1 - u, 1.6); // trái xa, phải gần
         const x = xStart + (xEnd - xStart) * u;
 
-        const wave = Math.sin((u * 7.5) + (t * 0.002) + (v * 2.2)) * amp;
-        const y = (yBase + yShift) + wave + (v - 0.5) * (h * 0.22);
+        const wave = Math.sin(u * 7.5 + t * 0.002 + v * 2.2) * amp;
+        const y = yBase + yShift + wave + (v - 0.5) * (h * 0.22);
 
         const aMask = rightMaskAlpha(x, y);
         if (aMask <= 0.001) continue;
 
         const r = 1.2 + 2.2 * (1 - depth); // gần to hơn
-        const alpha = (0.08 + 0.40 * (1 - depth)) * aMask;
+        const alpha = (0.08 + 0.4 * (1 - depth)) * aMask;
 
         // color: gray -> white
-        const col = (j % 6 === 0) ? COLORS.white : COLORS.gray;
+        const col = j % 6 === 0 ? COLORS.white : COLORS.gray;
         ctx.fillStyle = rgba(col, alpha);
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
@@ -399,10 +430,12 @@
     const lines = 5;
     for (let k = 0; k < lines; k++) {
       const phase = k * 0.55;
-      const isAccent = (k === 2);
+      const isAccent = k === 2;
 
       ctx.lineWidth = isAccent ? 1.6 : 1.1;
-      ctx.strokeStyle = isAccent ? rgba(COLORS.orange, 0.55) : rgba(COLORS.white, 0.18);
+      ctx.strokeStyle = isAccent
+        ? rgba(COLORS.orange, 0.55)
+        : rgba(COLORS.white, 0.18);
 
       // dashed moving
       ctx.setLineDash(isAccent ? [10, 16] : [6, 14]);
@@ -416,9 +449,10 @@
       for (let s = 0; s <= 60; s++) {
         const u = s / 60;
         const x = x0 + (x1 - x0) * u;
-        const y = y0
-          + Math.sin((u * 7.2) + (t * 0.0022) + phase) * (h * 0.06)
-          + Math.sin((u * 2.4) - (t * 0.0016) + phase) * (h * 0.025);
+        const y =
+          y0 +
+          Math.sin(u * 7.2 + t * 0.0022 + phase) * (h * 0.06) +
+          Math.sin(u * 2.4 - t * 0.0016 + phase) * (h * 0.025);
 
         const aMask = rightMaskAlpha(x, y);
         if (s === 0) ctx.moveTo(x, y);
@@ -441,7 +475,6 @@
   requestAnimationFrame(draw);
 })();
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const heading = document.querySelector("#services .slide-in-left");
 
@@ -455,9 +488,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
     {
-      threshold: 0.6,       // xuất hiện 60% thì chạy
-      rootMargin: "0px 0px -80px 0px"
-    }
+      threshold: 0.6, // xuất hiện 60% thì chạy
+      rootMargin: "0px 0px -80px 0px",
+    },
   );
 
   observer.observe(heading);
@@ -467,20 +500,22 @@ document.addEventListener("DOMContentLoaded", () => {
    FIX PATCH JS — Services cards (1,2,5)
    Paste at VERY END of main.js
 ========================================= */
-(function(){
-  function ready(fn){
+(function () {
+  function ready(fn) {
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
   }
 
-  ready(function(){
+  ready(function () {
     const root = document.getElementById("services");
     if (!root) return;
 
     const cards = Array.from(root.querySelectorAll(".service-card"));
     if (!cards.length) return;
 
-    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const isTouch = window.matchMedia(
+      "(hover: none), (pointer: coarse)",
+    ).matches;
 
     const chipsByIndex = [
       ["OTP", "2FA", "Account recovery"],
@@ -491,17 +526,20 @@ document.addEventListener("DOMContentLoaded", () => {
       ["Voice bots", "Smart routing", "Follow-ups"],
     ];
 
-    function escapeHtml(str){
+    function escapeHtml(str) {
       return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
-    function chipsHTML(chips){
-      return (chips || []).slice(0,3).map(c => `<span class="chip">${escapeHtml(c)}</span>`).join("");
+    function chipsHTML(chips) {
+      return (chips || [])
+        .slice(0, 3)
+        .map((c) => `<span class="chip">${escapeHtml(c)}</span>`)
+        .join("");
     }
 
     // ----- Create panel reveal (Concept 1)
@@ -520,8 +558,11 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         card.appendChild(reveal);
 
-        reveal.querySelector(".service-reveal__benefit").textContent = benefit || "";
-        reveal.querySelector(".service-reveal__chips").innerHTML = chipsHTML(chipsByIndex[i] || []);
+        reveal.querySelector(".service-reveal__benefit").textContent =
+          benefit || "";
+        reveal.querySelector(".service-reveal__chips").innerHTML = chipsHTML(
+          chipsByIndex[i] || [],
+        );
       }
 
       card.classList.add("is-enhanced");
@@ -536,9 +577,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ----- Spotlight (Concept 2) desktop only
     if (!isTouch) {
-      let raf = null, pending = null;
+      let raf = null,
+        pending = null;
 
-      function onMove(e){
+      function onMove(e) {
         const card = e.currentTarget;
         const r = card.getBoundingClientRect();
         const x = ((e.clientX - r.left) / r.width) * 100;
@@ -554,7 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      cards.forEach(card => card.addEventListener("mousemove", onMove));
+      cards.forEach((card) => card.addEventListener("mousemove", onMove));
     }
 
     // ----- Popover (Concept 5) on arrow only
@@ -575,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let active = null;
 
-    function positionPopover(anchorEl){
+    function positionPopover(anchorEl) {
       const rect = anchorEl.getBoundingClientRect();
       const margin = 12;
 
@@ -612,17 +654,22 @@ document.addEventListener("DOMContentLoaded", () => {
         popArrow.style.top = `18px`;
       }
 
-      left = Math.max(margin, Math.min(left, window.innerWidth - margin - popW));
+      left = Math.max(
+        margin,
+        Math.min(left, window.innerWidth - margin - popW),
+      );
       popover.style.left = `${left}px`;
       popover.style.top = `${top}px`;
       popover.style.bottom = `auto`;
       popover.style.right = `auto`;
     }
 
-    function openPopover(card, anchorEl, idx){
+    function openPopover(card, anchorEl, idx) {
       active = { card, anchorEl, idx };
 
-      const title = card.querySelector("h3") ? card.querySelector("h3").innerText.trim() : "Details";
+      const title = card.querySelector("h3")
+        ? card.querySelector("h3").innerText.trim()
+        : "Details";
       const p = card.querySelector("p");
       const benefit = p ? p.textContent.trim() : "";
 
@@ -634,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popover.classList.add("is-visible");
     }
 
-    function closePopover(){
+    function closePopover() {
       active = null;
       popover.classList.remove("is-visible");
     }
@@ -643,20 +690,37 @@ document.addEventListener("DOMContentLoaded", () => {
       const action = card.querySelector(".card-action");
       if (!action) return;
 
-      action.addEventListener("mouseenter", () => { if (!isTouch) openPopover(card, action, idx); });
-      action.addEventListener("mouseleave", () => { if (!isTouch) closePopover(); });
+      action.addEventListener("mouseenter", () => {
+        if (!isTouch) openPopover(card, action, idx);
+      });
+      action.addEventListener("mouseleave", () => {
+        if (!isTouch) closePopover();
+      });
 
       action.addEventListener("click", (e) => {
         if (!isTouch) return;
         e.preventDefault();
         e.stopPropagation();
-        if (active && active.card === card && popover.classList.contains("is-visible")) closePopover();
+        if (
+          active &&
+          active.card === card &&
+          popover.classList.contains("is-visible")
+        )
+          closePopover();
         else openPopover(card, action, idx);
       });
     });
 
-    window.addEventListener("scroll", () => { if (active) positionPopover(active.anchorEl); }, { passive:true });
-    window.addEventListener("resize", () => { if (active) positionPopover(active.anchorEl); });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (active) positionPopover(active.anchorEl);
+      },
+      { passive: true },
+    );
+    window.addEventListener("resize", () => {
+      if (active) positionPopover(active.anchorEl);
+    });
 
     document.addEventListener("pointerdown", (e) => {
       if (!popover.classList.contains("is-visible")) return;
@@ -667,4 +731,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 })();
-
