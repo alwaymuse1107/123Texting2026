@@ -1648,6 +1648,9 @@ section,
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
+
+
+
 .services .service-header {
   margin-bottom: 60px;
 }
@@ -1683,6 +1686,14 @@ section,
   }
 }
 
+#services .container,
+#services .service-header,
+#services .service-heading,
+#services .service-heading *{
+  position: relative;
+  z-index: 10 !important;
+}
+
 .services .service-header .service-summary p {
   margin-bottom: 25px;
   color: var(--default-color);
@@ -1711,6 +1722,16 @@ section,
 
 .services .service-header .service-summary .service-btn:hover i {
   transform: translateX(5px);
+}
+
+#services > .container{
+  position: relative;
+  z-index: 5;          /* ✅ chữ luôn ở trên */
+}
+#services .service-header,
+#services .service-heading{
+  position: relative;
+  z-index: 6;
 }
 
 @media (max-width: 992px) {
@@ -1911,6 +1932,7 @@ section,
 .steps .steps-wrapper {
   position: relative;
   padding: 20px 0;
+    overflow: visible;
 }
 
 .steps .steps-wrapper::before {
@@ -1922,13 +1944,53 @@ section,
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+    opacity: 0.25;
 }
 
-.steps .step-item {
-  margin-bottom: 50px;
+.steps .steps-line-fill {
+  opacity: 0.6;
+}
+
+/* trạng thái step */
+.steps .step-item{
+    opacity: 0 !important;
+  transform: translateY(12px) !important;
+  pointer-events: none !important;
+    transition: opacity 420ms ease, transform 420ms ease, filter 220ms ease;
+}
+
+.steps .step-item{
+  margin-bottom: 50px;  /* 👈 cái này bị mất nên nó dính */
   width: 100%;
   position: relative;
+    z-index: 1; /* card nổi lên che line */
 }
+
+.steps .step-item.is-upcoming{
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  filter: saturate(.95);
+}
+
+/* Khi step được reveal */
+.steps .step-item.is-revealed{
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.steps .step-item.is-active{
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.steps .step-item.is-done{
+  opacity: .9;
+}
+
+.steps .step-item.is-done{ opacity: .9 !important; }
+.steps .step-item.is-active{ opacity: 1 !important; }
 
 .steps .step-item:last-child {
   margin-bottom: 0;
@@ -1943,6 +2005,8 @@ section,
   align-items: center;
   gap: 30px;
 }
+
+.steps .steps-request-dot{ display:none !important; }
 
 .steps .step-icon {
   flex-shrink: 0;
@@ -1966,6 +2030,14 @@ section,
   transition: transform 0.3s ease-in-out;
 }
 
+.steps .step-item.is-active .step-icon{
+  border-color: color-mix(in srgb, var(--accent-color), transparent 45%);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--accent-color), transparent 70%),
+    0 0 28px color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+
 .steps .step-info {
   flex: 1;
   background-color: var(--surface-color);
@@ -1975,8 +2047,76 @@ section,
   transition: transform 0.3s ease-in-out;
 }
 
+.steps .step-info{ position: relative; }
+
 .steps .step-info:hover {
   transform: translateY(-5px);
+}
+
+
+.steps .step-info::before{
+  content:"";
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  /* trục giữa desktop = 50%, mobile = 25px (match wrapper line) */
+  left: calc(var(--steps-line-x, 50%)); 
+  width: 2px;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  background: var(--accent-color);
+  opacity: .75;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent-color), transparent 65%));
+  pointer-events: none;
+}
+
+.steps .step-info::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: 8px;
+  padding: 1px; /* độ dày viền highlight */
+  background: linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent-color), transparent 45%) 50%,
+    transparent 100%
+  );
+  /* mask để chỉ hiện ở viền */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0;
+  transform: translateX(-30%);
+  pointer-events:none;
+    z-index: 2;
+  animation: none; /* reset để retrigger */
+}
+
+
+.steps .step-info::after{ animation: none; }
+.steps .step-item.is-active .step-info::after{
+  opacity: 1;
+  animation: borderSweep 2000ms cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes passLine{
+  from { transform: translateX(-50%) scaleY(0); }
+  to   { transform: translateX(-50%) scaleY(1); }
+}
+
+.steps .step-info > *{
+  position: relative;
+  z-index: 3;
+}
+
+
+@keyframes borderSweep{
+  0%   { transform: translateX(-40%); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateX(40%); opacity: 0; }
 }
 
 .steps .step-number {
@@ -2004,59 +2144,77 @@ section,
   margin-bottom: 0;
 }
 
-@media (max-width: 991px) {
-  .steps .steps-wrapper::before {
-    left: 25px;
-  }
+.steps .steps-line-fill{
+  position: absolute;
+  top: 0;
+  left: var(--steps-line-x);
+  width: 2px;
+  height: var(--steps-progress);
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent-color), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 
-  .steps .step-item .step-content {
-    flex-direction: row !important;
-  }
-
-  .steps .step-icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .steps .step-icon i {
-    font-size: 24px;
-  }
-
-  .steps .step-info {
-    padding: 20px;
-  }
-
-  .steps h3 {
-    font-size: 1.3rem;
-  }
+  /* ✅ thêm 2 dòng này */
+  transition: height 2000ms cubic-bezier(.16,1,.3,1);
+  will-change: height;
 }
 
-@media (max-width: 767px) {
-  .steps .step-content {
-    gap: 20px;
-  }
-
-  .steps .step-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .steps .step-icon i {
-    font-size: 20px;
-  }
-
-  .steps .step-info {
-    padding: 15px;
-  }
-
-  .steps h3 {
-    font-size: 1.2rem;
-  }
-
-  .steps p {
-    font-size: 0.95rem;
-  }
+.steps .steps-request-dot{
+  position: absolute;
+  left: var(--steps-line-x);
+  top: 0;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, 0);
+  border-radius: 999px;
+  background: var(--accent-color);
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--accent-color), transparent 82%),
+    0 0 26px color-mix(in srgb, var(--accent-color), transparent 65%);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 650ms cubic-bezier(.2,.8,.2,1);
 }
+
+/* pulse nhẹ khi step active */
+@keyframes stepsPulse{
+  0%{ transform: scale(1); }
+  45%{ transform: scale(1.06); }
+  100%{ transform: scale(1); }
+}
+
+.steps .step-item.pulse .step-icon{
+  animation: stepsPulse 420ms ease;
+}
+
+/* (optional) nếu bạn không muốn hover lift riêng .step-info nữa vì đã có active state */
+.steps .step-info:hover{
+  transform: translateY(-5px); /* giữ hoặc xóa nếu muốn */
+}
+
+.steps .steps-wrapper{ --steps-line-x: 50%; }
+
+@media (max-width: 991px){
+  .steps .steps-wrapper::before { left: 25px; }
+  .steps .steps-wrapper{ --steps-line-x: 25px; }
+
+  .steps .step-item .step-content { flex-direction: row !important; }
+  .steps .step-icon { width: 60px; height: 60px; }
+  .steps .step-icon i { font-size: 24px; }
+  .steps .step-info { padding: 20px; }
+}
+
+@media (max-width: 767px){
+  .steps .step-content { gap: 20px; }
+  .steps .step-icon { width: 50px; height: 50px; }
+  .steps .step-icon i { font-size: 20px; }
+  .steps .step-info { padding: 15px; }
+  .steps h3 { font-size: 1.2rem; }
+  .steps p { font-size: 0.95rem; }
+}
+
 
 /*--------------------------------------------------------------
 # Call To Action Section
@@ -4241,9 +4399,6 @@ section,
 /* Custom background for services section */
 
 
-/* =========================================
-   SERVICES – AMBIENT ORANGE WAVES HERO
-========================================= */
 
 #services .service-heading{
   font-size: 3rem;
@@ -4395,12 +4550,10 @@ section,
 /* Nếu container bị padding top/bottom */
 /* 1) container phải nằm ở hàng giữa của grid */
 #services.services.section > .container{
-  grid-row: 7 !important;     /* 👈 QUAN TRỌNG */
-  align-self: end !important; /* 👈 ép chữ xuống dưới trong hàng */
+  grid-row: auto !important;
+  align-self: center !important;  /* hoặc end nếu muốn chữ thấp */
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  position: relative;
-  z-index: 5;
 }
 
 #services .slide-in-left{
@@ -4787,3 +4940,4 @@ a{ color:inherit; text-decoration:none; }
 #core-products.section{
   padding-bottom: 0 !important;
 }
+
