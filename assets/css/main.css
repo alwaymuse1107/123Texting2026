@@ -1936,7 +1936,7 @@ section,
 
 /* inner highlight ring (like glass edge) */
 .neo-privacy-card::after {
-  content: "";
+  content: none;
   position: absolute;
   inset: 10px;
   border-radius: 18px;
@@ -1946,7 +1946,7 @@ section,
 
 /* pixel-ish noise overlay (giống reference hơn grain) */
 .neo-privacy-card::before {
-  content: "";
+  content: none;
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -5343,3 +5343,95 @@ a {
 #core-products.section {
   padding-bottom: 0 !important;
 }
+
+
+/* Make FAQ items look like neo-privacy-card */
+.faq .faq-container .faq-item.neo-privacy-card{
+  position: relative;
+  padding-right: 56px; /* chừa chỗ cho chevron */
+}
+
+/* Align chevron like your FAQ list */
+.faq .faq-item.neo-privacy-card .faq-toggle{
+  position: absolute;
+  right: 18px;
+  top: 22px;
+  font-size: 18px;
+  opacity: .9;
+}
+
+/* Hide content by default (accordion) */
+.faq .faq-item .faq-content{
+  display: none;
+  margin-top: 10px;
+}
+
+/* Show when active */
+.faq .faq-item.faq-active .faq-content{
+  display: block;
+}
+
+/* Optional: spacing for title inside neo card */
+.faq .faq-item.neo-privacy-card .neo-privacy-title{
+  margin: 0;
+}
+
+/* FAQ cards should NOT have fixed height like Solutions cards */
+#faq .faq-item.neo-privacy-card{
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* đảm bảo nội dung co giãn */
+#faq .faq-item.neo-privacy-card .neo-privacy-text{
+  width: 100%;
+}
+
+/* 1) Base style: giống FAQ card */
+.contact-form-wrapper{
+  background: rgba(0,0,0,0.35) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45) !important;
+
+  position: relative;
+  overflow: hidden; /* để glow cam không tràn */
+}
+
+/* 2) Bỏ viền trong (nếu còn pseudo-element cũ) */
+.contact-form-wrapper::before,
+.contact-form-wrapper::after{
+  content: none !important;
+}
+
+/* 3) Glow cam blur như FAQ active */
+.contact-form-wrapper.glow-orange::before{
+  content:"";
+  position:absolute;
+  inset:-90px -90px auto auto; /* góc trên phải */
+  width:380px;
+  height:380px;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,122,24,0.30),
+    transparent 60%);
+  filter: blur(10px);
+  pointer-events:none;
+}
+
+/* 4) Đảm bảo nội dung form nằm trên glow */
+.contact-form-wrapper > *{
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form-wrapper .form-control{
+  background: rgba(0,0,0,0.18) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+.contact-form-wrapper .form-control::placeholder{
+  color: rgba(255,255,255,0.45) !important;
+}
+

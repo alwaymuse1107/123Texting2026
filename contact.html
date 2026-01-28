@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Contact - 123 Texting</title>
+  <title>Home - 123 Texting</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -26,14 +31,16 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+  :root{
+    --default-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --heading-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --nav-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  html, body { font-family: var(--default-font) !important; }
+  h1,h2,h3,h4,h5,h6 { font-family: var(--heading-font) !important; }
+</style>
 
-  <!-- =======================================================
-  * Template Name: Strategy
-  * Template URL: https://bootstrapmade.com/strategy-bootstrap-agency-template/
-  * Updated: Jun 06 2025 with Bootstrap v5.3.6
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">
@@ -131,7 +138,7 @@
                   </div>
 
                   <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary btn-submit">SEND MESSAGE</button>
+                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
                   </div>
                 </div>
               </form>

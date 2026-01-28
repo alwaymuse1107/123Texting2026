@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Why Choose Us - 123 Texting</title>
+  <title>Home - 123 Texting</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -26,17 +31,19 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+  :root{
+    --default-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --heading-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --nav-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  html, body { font-family: var(--default-font) !important; }
+  h1,h2,h3,h4,h5,h6 { font-family: var(--heading-font) !important; }
+</style>
 
-  <!-- =======================================================
-  * Template Name: Strategy
-  * Template URL: https://bootstrapmade.com/strategy-bootstrap-agency-template/
-  * Updated: Jun 06 2025 with Bootstrap v5.3.6
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body class="portfolio-details-page">
+<body class="index-page">
 
    <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -70,194 +77,171 @@
     </div>
   </header>
 
-  <main class="main">
-<section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1>Why Teams Choose Our Communications Platform</h1>
-          <p class="subheadline">
+  <main class="main" style="padding-top: 110px;">
+
+  <!-- WHY HERO (dark + orange glow, giống vibe trang index) -->
+  <section class="why-hero section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <p class="why-eyebrow mb-2">WHY CHOOSE US</p>
+          <h1 class="why-title mb-3">Why Teams Choose Our Communications Platform</h1>
+          <p class="why-subtitle mb-0">
             When voice and messaging become part of your product and operations, reliability, visibility, and control matter.
             We combine carrier-grade infrastructure with developer-first tooling so teams can build confidently and scale
             without telecom complexity.
           </p>
         </div>
       </div>
-      <div class="hero-glow"></div>
-    </section>
+    </div>
+    <div class="why-hero-glow"></div>
+  </section>
 
-    <!-- Reasons -->
-    <section id="reasons" class="section">
-      <div class="container">
-        <div class="grid">
-          <!-- 1 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="badge">01</div>
+  <!-- REASONS (thẻ style giống Solutions / FAQ: border trắng mờ + blur đen + glow cam) -->
+  <section id="reasons" class="why-reasons section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row g-4 justify-content-center">
+
+        <div class="col-lg-6">
+          <div class="why-card why-card-active">
+            <div class="why-card-top">
+              <div class="why-badge">01</div>
               <h3>Carrier-Grade Reliability</h3>
             </div>
-            <p class="card-desc">
-              Built to deliver consistent call quality and high message deliverability—even at peak volume.
-            </p>
-            <p class="card-body">
-              Communication failures don’t just create technical incidents—they create customer frustration and operational cost.
-              Our platform is designed with redundancy, intelligent routing, and continuous monitoring so calls connect cleanly
-              and messages reach recipients reliably across regions.
-            </p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <div class="meta-title">What this means in practice</div>
-              <ul>
-                <li>More consistent delivery outcomes and fewer unknown failures</li>
-                <li>Better customer experience during high-traffic spikes</li>
-                <li>Infrastructure designed for production workloads, not demos</li>
-              </ul>
-            </div>
-          </article>
+            <p class="why-desc">Consistent call quality and high message deliverability—even at peak volume.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>More consistent delivery outcomes and fewer unknown failures</li>
+              <li>Better customer experience during high-traffic spikes</li>
+              <li>Infrastructure designed for production workloads, not demos</li>
+            </ul>
+          </div>
+        </div>
 
-          <!-- 2 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="badge">02</div>
+        <div class="col-lg-6">
+          <div class="why-card">
+            <div class="why-card-top">
+              <div class="why-badge">02</div>
               <h3>Developer-First APIs & Faster Time-to-Ship</h3>
             </div>
-            <p class="card-desc">
-              Clean APIs, clear documentation, and event-driven building blocks that reduce engineering overhead.
-            </p>
-            <p class="card-body">
-              We designed the platform so developers can integrate voice and messaging quickly and evolve workflows over time.
-              Instead of building telecom logic from scratch, your team uses predictable API patterns and real-time events to
-              implement production-ready flows.
-            </p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <div class="meta-title">What this means in practice</div>
-              <ul>
-                <li>Faster integration for calls and SMS/MMS</li>
-                <li>Webhooks for real-time events instead of polling</li>
-                <li>Easier testing with sandbox environments and consistent API behavior</li>
-              </ul>
-            </div>
-          </article>
+            <p class="why-desc">Clean APIs, clear docs, and event-driven building blocks that reduce engineering overhead.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>Faster integration for calls and SMS/MMS</li>
+              <li>Webhooks for real-time events instead of polling</li>
+              <li>Easier testing with sandbox environments</li>
+            </ul>
+          </div>
+        </div>
 
-          <!-- 3 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="badge">03</div>
+        <div class="col-lg-6">
+          <div class="why-card">
+            <div class="why-card-top">
+              <div class="why-badge">03</div>
               <h3>One Unified Platform</h3>
             </div>
-            <p class="card-desc">
-              Phone calls, SMS/MMS, numbers, webhooks, and logs in one place.
-            </p>
-            <p class="card-body">
-              Many teams stitch together multiple vendors for voice, messaging, numbers, and monitoring—then spend time
-              reconciling logs, billing, and behavior. A unified platform reduces integration complexity and improves
-              operational clarity.
-            </p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <div class="meta-title">What this means in practice</div>
-              <ul>
-                <li>A consistent API and authentication model</li>
-                <li>Unified observability across products</li>
-                <li>Less operational overhead when scaling to new use cases</li>
-              </ul>
-            </div>
-          </article>
+            <p class="why-desc">Calls, SMS/MMS, numbers, webhooks, and logs in one place.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>A consistent API and authentication model</li>
+              <li>Unified observability across products</li>
+              <li>Less operational overhead as you scale</li>
+            </ul>
+          </div>
+        </div>
 
-          <!-- 4 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="badge">04</div>
+        <div class="col-lg-6">
+          <div class="why-card">
+            <div class="why-card-top">
+              <div class="why-badge">04</div>
               <h3>Full Visibility & Operational Control</h3>
             </div>
-            <p class="card-desc">
-              Know what happened, why it happened, and what to do next—without guessing.
-            </p>
-            <p class="card-body">
-              In production, “it failed” isn’t enough. Teams need to trace message and call lifecycles, review webhook
-              deliveries, and diagnose issues quickly. Our console and logs are built to support real operations—not just setup.
-            </p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <div class="meta-title">What this means in practice</div>
-              <ul>
-                <li>Message status tracking (queued → sent → delivered/failed)</li>
-                <li>Call lifecycle tracking (ringing → answered → completed/failed)</li>
-                <li>Webhook delivery logs with response codes and troubleshooting context</li>
-              </ul>
-            </div>
-          </article>
+            <p class="why-desc">Trace call & message lifecycle—know what happened and why, without guessing.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>Message status tracking (queued → sent → delivered/failed)</li>
+              <li>Call lifecycle tracking (ringing → answered → completed/failed)</li>
+              <li>Webhook delivery logs with troubleshooting context</li>
+            </ul>
+          </div>
+        </div>
 
-          <!-- 5 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="badge">05</div>
-              <h3>Built for Security & Enterprise Requirements</h3>
+        <div class="col-lg-6">
+          <div class="why-card">
+            <div class="why-card-top">
+              <div class="why-badge">05</div>
+              <h3>Security & Enterprise Requirements</h3>
             </div>
-            <p class="card-desc">
-              Secure-by-design foundations that support business-critical communication.
-            </p>
-            <p class="card-body">
-              Security and compliance aren’t afterthoughts when you’re handling authentication, support workflows, or high-value
-              interactions. We support secure access patterns and operational controls so your team can scale responsibly.
-            </p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <div class="meta-title">What this means in practice</div>
-              <ul>
-                <li>Strong API authentication and access control foundations</li>
-                <li>Rate limiting and abuse prevention patterns</li>
-                <li>Audit-friendly logs and operational visibility</li>
-                <li class="muted">(Only claim specific certifications like SOC 2 / ISO if you truly have them.)</li>
-              </ul>
-            </div>
-          </article>
+            <p class="why-desc">Secure-by-design foundations for business-critical communication.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>Strong API authentication and access control</li>
+              <li>Rate limiting and abuse prevention patterns</li>
+              <li>Audit-friendly logs and operational visibility</li>
+            </ul>
+          </div>
+        </div>
 
-          <!-- 6 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="badge">06</div>
+        <div class="col-lg-6">
+          <div class="why-card">
+            <div class="why-card-top">
+              <div class="why-badge">06</div>
               <h3>Designed to Scale Globally</h3>
             </div>
-            <p class="card-desc">
-              Expand to new regions without rewriting your communication stack.
-            </p>
-            <p class="card-body">
-              As businesses grow, the volume of calls and messages increases, and operational requirements become more complex.
-              We built the platform so customers can scale traffic, add regions, and adapt workflows without changing the core
-              architecture.
-            </p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <div class="meta-title">What this means in practice</div>
-              <ul>
-                <li>Scale throughput as usage grows</li>
-                <li>Maintain consistent workflows across regions</li>
-                <li>Keep a single operational model even as complexity increases</li>
-              </ul>
-            </div>
-          </article>
+            <p class="why-desc">Expand to new regions without rewriting your communication stack.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>Scale throughput as usage grows</li>
+              <li>Maintain consistent workflows across regions</li>
+              <li>Keep a single operational model as complexity increases</li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Closing CTA -->
-    <section class="cta">
-      <div class="container cta-inner">
-        <div class="cta-copy">
-          <h2>Communication should work like software.</h2>
-          <p>
-            Reliable, observable, and easy to evolve. That’s why teams choose our platform to power phone calls and messaging
-            that customers can trust.
+        <div class="col-lg-12">
+          <div class="why-card">
+            <div class="why-card-top">
+              <div class="why-badge">07</div>
+              <h3>Enterprise-Ready Support</h3>
+            </div>
+            <p class="why-desc">Support that scales with your communication needs.</p>
+            <div class="why-divider"></div>
+            <div class="why-meta-title">What this means in practice</div>
+            <ul class="why-list">
+              <li>Practical onboarding guidance</li>
+              <li>Production readiness best practices</li>
+              <li>Help diagnosing delivery and call-quality issues</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA (glass like your site) -->
+  <section class="why-cta section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="why-cta-box">
+        <div>
+          <h2 class="mb-2">Communication should work like software.</h2>
+          <p class="mb-0">
+            Reliable, observable, and easy to evolve. That’s why teams choose our platform to power phone calls and messaging customers can trust.
           </p>
         </div>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="#">Get Started</a>
-        </div>
+        <a class="btn btn-primary btn-submit" href="index.html#contact">REQUEST A DEMO</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
+
 
   <footer id="footer" class="footer">
 
