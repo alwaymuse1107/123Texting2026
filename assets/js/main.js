@@ -731,3 +731,123 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 })();
+
+/* =========================================
+   Steps: autoplay once + progress + border sweep + reveal step-by-step
+========================================= */
+(function(){
+  function ready(fn){
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+  ready(function(){
+    const section = document.querySelector("#steps");
+    if (!section) return;
+
+    const wrapper = section.querySelector(".steps-wrapper");
+    const items = Array.from(section.querySelectorAll(".step-item"));
+    if (!wrapper || items.length === 0) return;
+
+    // inject progress fill if missing
+    if (!wrapper.querySelector(".steps-line-fill")){
+      const fill = document.createElement("div");
+      fill.className = "steps-line-fill";
+      wrapper.appendChild(fill);
+    }
+
+    // sync line x (desktop 50% / mobile 25px)
+    const mq = window.matchMedia("(max-width: 991px)");
+    const syncLineX = () => wrapper.style.setProperty("--steps-line-x", mq.matches ? "25px" : "50%");
+    syncLineX();
+    mq.addEventListener?.("change", syncLineX);
+
+    const getNodeYs = () => {
+      const wRect = wrapper.getBoundingClientRect();
+      return items.map(it => {
+        const icon = it.querySelector(".step-icon") || it;
+        const r = icon.getBoundingClientRect();
+        return (r.top + r.height/2) - wRect.top;
+      });
+    };
+
+    const moveProgressTo = (idx) => {
+      const ys = getNodeYs();
+      const y = Math.max(0, ys[idx] ?? 0);
+      wrapper.style.setProperty("--steps-progress", `${y}px`);
+    };
+
+    function setState(idx){
+      items.forEach((it, i) => {
+        it.classList.remove("is-done","is-active","is-upcoming","pulse","is-revealed","is-sweep");
+        if (i === 0) it.classList.add("is-revealed");
+        if (i < idx) it.classList.add("is-done","is-revealed");
+        else if (i === idx) it.classList.add("is-active","is-revealed");
+        else it.classList.add("is-upcoming"); // hidden
+      });
+
+      const active = items[idx];
+      if (active) {
+        active.classList.add("pulse");
+        setTimeout(() => active.classList.remove("pulse"), 450);
+      }
+    }
+
+    // retrigger border sweep each step (reliable)
+    function triggerSweep(el){
+      el.classList.remove("is-sweep");
+      el.offsetHeight; // reflow
+      el.classList.add("is-sweep");
+    }
+
+    async function playOnce(){
+      const sweepMs = 2000; // match your CSS borderSweep duration
+      const gapMs = 250;
+
+      // init: only step 1 visible
+      items.forEach((it, i) => {
+        it.classList.remove("is-done","is-active","is-upcoming","pulse","is-revealed","is-sweep");
+        if (i === 0) it.classList.add("is-revealed","is-active");
+        else it.classList.add("is-upcoming");
+      });
+      moveProgressTo(0);
+      triggerSweep(items[0]);
+
+      // step-by-step
+      for (let i = 1; i < items.length; i++){
+        // mark previous done
+            items[i].classList.add("is-revealed");
+          items[i].classList.remove("is-active");
+          items[i].offsetHeight;
+          items[i].classList.add("is-active");
+
+        // progress moves first
+        moveProgressTo(i);
+
+        // wait sweep finishes then reveal next
+        await sleep(sweepMs + gapMs);
+
+        items[i].classList.remove("is-upcoming");
+        items[i].classList.add("is-revealed","is-active");
+
+        triggerSweep(items[i]);
+      }
+
+      // end: keep last active
+      items[items.length - 1].classList.add("is-active","is-revealed");
+    }
+
+    // autoplay once when section enters viewport
+    let played = false;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !played){
+        played = true;
+        requestAnimationFrame(() => requestAnimationFrame(playOnce));
+        io.unobserve(e.target);
+      }
+    }, { threshold: 0.35, rootMargin: "0px 0px -120px 0px" });
+
+    io.observe(section);
+  });
+})();
