@@ -497,14 +497,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================
-   FIX PATCH JS — Services cards (1,2,5)
-   Paste at VERY END of main.js
+   Steps: autoplay once + progress + border sweep + reveal step-by-step
 ========================================= */
 (function () {
   function ready(fn) {
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
   }
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
   ready(function () {
     const root = document.getElementById("services");
