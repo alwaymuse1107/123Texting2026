@@ -2188,6 +2188,7 @@ section,
   transform: translateY(-2px);
 }
 
+
 .steps .step-item.is-done{
   opacity: .9;
 }
@@ -2350,18 +2351,18 @@ section,
 .steps .steps-line-fill{
   position: absolute;
   top: 0;
-  left: var(--steps-line-x);
+  left: var(--steps-line-x, 50%);
   width: 2px;
-  height: var(--steps-progress);
+  height: var(--steps-progress, 0px);
   transform: translateX(-50%);
   background: var(--accent-color);
   box-shadow: 0 0 18px color-mix(in srgb, var(--accent-color), transparent 70%);
+  z-index: 0;   /* vẫn dưới card */
   pointer-events: none;
-  z-index: 0;
+}
 
-  /* ✅ thêm 2 dòng này */
-  transition: height 2000ms cubic-bezier(.16,1,.3,1);
-  will-change: height;
+@keyframes stepsFill{
+  to{ height: 100%; }
 }
 
 .steps .steps-request-dot{
