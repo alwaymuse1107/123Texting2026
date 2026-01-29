@@ -5591,3 +5591,217 @@ a {
   color: rgba(255,255,255,0.45) !important;
 }
 
+/* ===== WHY CHOOSE US – polish like your screenshot ===== */
+:root{ --accent:#FF7A18; }
+
+/* HERO */
+.why-hero{
+  position: relative;
+  overflow: hidden;
+  padding: 90px 0 40px;
+  /* nền tối + cam lan rộng như ảnh */
+  background:
+    radial-gradient(900px 520px at 12% 30%, rgba(255,122,24,0.38), transparent 60%),
+    radial-gradient(700px 420px at 88% 10%, rgba(255,122,24,0.18), transparent 55%),
+    radial-gradient(900px 520px at 50% 80%, rgba(0,0,0,0.55), transparent 60%);
+}
+
+.why-hero .container{ position: relative; z-index: 2; }
+
+.why-eyebrow{
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* headline giống ảnh: to, chắc, đậm */
+.why-title{
+  font-size: 64px;
+  line-height: 1.03;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+  margin: 0 auto;
+}
+
+/* subtitle nhỏ hơn, mờ hơn */
+.why-subtitle{
+  margin-top: 16px;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  font-size: 15px;
+  max-width: 75ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* arcs (vòng cung) như ảnh */
+.why-arcs{
+  position: absolute;
+  left: 50%;
+  top: -520px;
+  transform: translateX(-50%);
+  width: 1100px;
+  height: 1100px;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-radial-gradient(
+    circle at 50% 72%,
+    rgba(255,122,24,0.18) 0 2px,
+    transparent 2px 24px
+  );
+  opacity: 0.8;
+  filter: blur(0px);
+}
+
+/* glow phụ dưới hero */
+.why-hero-glow{
+  position:absolute;
+  inset:auto auto -520px -520px;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle at 35% 35%, rgba(255,122,24,0.28), transparent 60%);
+  filter: blur(18px);
+  pointer-events:none;
+  z-index: 0;
+}
+
+/* REASONS spacing */
+.why-reasons{
+  padding: 40px 0 70px;
+}
+
+/* Cards giống vibe ảnh: border trắng mờ, nền đen blur */
+.why-card{
+  position: relative;
+  overflow: hidden;
+  padding: 22px 22px 18px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.36);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+
+.why-card:hover{
+  border-color: rgba(255,255,255,0.28);
+  transform: translateY(-1px);
+  transition: .18s ease;
+}
+
+/* badge như ảnh (viền cam, tối) */
+.why-badge{
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 800;
+  color: var(--accent);
+  border: 1px solid rgba(255,122,24,0.45);
+  background: rgba(0,0,0,0.30);
+}
+
+/* title trong card */
+.why-card h3{
+  margin:0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* desc */
+.why-desc{
+  margin: 10px 0 14px;
+  color: rgba(255,255,255,0.74);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* divider & meta */
+.why-divider{
+  height:1px;
+  background: rgba(255,255,255,0.10);
+  margin: 10px 0 12px;
+}
+.why-meta-title{
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.why-list{
+  margin:0;
+  padding-left: 18px;
+  color: rgba(255,255,255,0.62);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.why-list li{ margin: 6px 0; }
+.why-list li::marker{ color: var(--accent); }
+
+/* highlight card (active) có glow cam nhẹ */
+.why-card-active{
+  border-color: rgba(255,122,24,0.35);
+}
+.why-card-active::before{
+  content:"";
+  position:absolute;
+  inset:-90px auto auto -90px;
+  width:360px;
+  height:360px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,122,24,0.28), transparent 60%);
+  filter: blur(10px);
+  pointer-events:none;
+}
+.why-card > *{ position: relative; z-index: 1; }
+
+/* CTA cuối: nền ấm + chữ lớn giống ảnh */
+.why-cta{
+   background: #000 !important;
+}
+.why-cta-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding: 34px 30px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.35);
+  border:none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+.why-cta-box h2{
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin 0;
+}
+.why-cta-box h2 .accent{ color: var(--accent); }
+.why-cta-box p{
+  margin-top: 10px;
+  color: rgba(255,255,255,0.68);
+  max-width: 70ch;
+  line-height: 1.7;
+}
+
+/* responsive */
+@media (max-width: 992px){
+  .why-title{ font-size: 42px; max-width: 22ch; }
+  .why-cta-box{ flex-direction: column; align-items:flex-start; }
+  .why-cta-box h2{ font-size: 38px; }
+}
+
+/* ép layout reasons thành 1 cột */
+.why-reasons .row > [class*="col-lg-6"]{
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
