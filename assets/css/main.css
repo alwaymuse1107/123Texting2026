@@ -5784,7 +5784,7 @@ a {
   font-size: 52px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin 0;
+
 }
 .why-cta-box h2 .accent{ color: var(--accent); }
 .why-cta-box p{
@@ -5806,3 +5806,5 @@ a {
   flex: 0 0 100% !important;
   max-width: 100% !important;
 }
+
+
