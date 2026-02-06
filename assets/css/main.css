@@ -5595,28 +5595,6 @@ a {
 /* ===== WHY CHOOSE US – polish like your screenshot ===== */
 :root{ --accent:#FF7A18; }
 
-/* HERO */
-.why-hero{
-  position: relative;
-  overflow: hidden;
-  padding: 90px 0 40px;
-  /* nền tối + cam lan rộng như ảnh */
-  background:
-    radial-gradient(900px 520px at 12% 30%, rgba(255,122,24,0.38), transparent 60%),
-    radial-gradient(700px 420px at 88% 10%, rgba(255,122,24,0.18), transparent 55%),
-    radial-gradient(900px 520px at 50% 80%, rgba(0,0,0,0.55), transparent 60%);
-}
-
-.why-hero .container{ position: relative; z-index: 2; }
-
-.why-eyebrow{
-  color: var(--accent);
-  font-weight: 800;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-
 /* headline giống ảnh: to, chắc, đậm */
 .why-title{
   font-size: 64px;
@@ -5657,55 +5635,26 @@ a {
   filter: blur(0px);
 }
 
-/* glow phụ dưới hero */
-.why-hero-glow{
-  position:absolute;
-  inset:auto auto -520px -520px;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle at 35% 35%, rgba(255,122,24,0.28), transparent 60%);
-  filter: blur(18px);
-  pointer-events:none;
-  z-index: 0;
+.why-hero{
+  position: relative;
+  overflow: hidden;
+  padding: 90px 0 40px;
+
+  /* nền đen */
+  background:
+    radial-gradient(900px 520px at 12% 30%, rgba(255,122,24,0.18), transparent 60%), /* cam nhẹ */
+    radial-gradient(700px 420px at 88% 10%, rgba(255,122,24,0.10), transparent 55%), /* cam nhẹ */
+    radial-gradient(900px 520px at 50% 80%, rgba(255,255,255,0.04), transparent 60%), /* highlight nhẹ */
+    linear-gradient(to bottom, #05070a 0%, #05070a 100%); /* nền đen đặc */
 }
+
 
 /* REASONS spacing */
 .why-reasons{
   padding: 40px 0 70px;
 }
 
-/* Cards giống vibe ảnh: border trắng mờ, nền đen blur */
-.why-card{
-  position: relative;
-  overflow: hidden;
-  padding: 22px 22px 18px;
-  border-radius: 16px;
-  background: rgba(0,0,0,0.36);
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-}
 
-.why-card:hover{
-  border-color: rgba(255,255,255,0.28);
-  transform: translateY(-1px);
-  transition: .18s ease;
-}
-
-/* badge như ảnh (viền cam, tối) */
-.why-badge{
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight: 800;
-  color: var(--accent);
-  border: 1px solid rgba(255,122,24,0.45);
-  background: rgba(0,0,0,0.30);
-}
 
 /* title trong card */
 .why-card h3{
@@ -5723,29 +5672,6 @@ a {
   line-height: 1.7;
 }
 
-/* divider & meta */
-.why-divider{
-  height:1px;
-  background: rgba(255,255,255,0.10);
-  margin: 10px 0 12px;
-}
-.why-meta-title{
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.why-list{
-  margin:0;
-  padding-left: 18px;
-  color: rgba(255,255,255,0.62);
-  font-size: 13px;
-  line-height: 1.75;
-}
-.why-list li{ margin: 6px 0; }
-.why-list li::marker{ color: var(--accent); }
 
 /* highlight card (active) có glow cam nhẹ */
 .why-card-active{
@@ -5807,4 +5733,192 @@ a {
   max-width: 100% !important;
 }
 
+
+/* ====== WHY CARDS: nâng cấp look ====== */
+.why-card{
+  position: relative;
+  border-radius: 18px;
+  padding: 28px;
+  background:
+    radial-gradient(900px 260px at 12% 0%, rgba(255,122,24,.10), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* viền gradient “xịn” */
+.why-card::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,122,24,.55), rgba(255,255,255,.12), rgba(0,0,0,0));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events:none;
+  opacity: .55;
+}
+
+.why-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,122,24,.28);
+  box-shadow: 0 26px 80px rgba(0,0,0,.55);
+}
+
+/* badge số làm “nổi” hơn */
+.why-badge{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: #FF7A18;
+  background: rgba(255,122,24,.12);
+  border: 1px solid rgba(255,122,24,.35);
+  box-shadow: 0 10px 25px rgba(255,122,24,.15);
+}
+
+/* top row: title + badge gọn và cân */
+.why-card-top{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.why-card h3{
+  margin: 0;
+  font-size: 26px; /* tăng nhẹ */
+  line-height: 1.2;
+}
+
+/* desc rõ hơn */
+.why-desc{
+  color: rgba(255,255,255,.72);
+  margin: 6px 0 14px;
+}
+
+/* divider đẹp hơn */
+.why-divider{
+  height:1px;
+  background: linear-gradient(90deg, rgba(255,122,24,.35), rgba(255,255,255,.08), rgba(0,0,0,0));
+  margin: 16px 0 14px;
+}
+
+/* meta title */
+.why-meta-title{
+  color: rgba(255,122,24,.95);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 800;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/* list có icon check + 2 cột trên màn rộng */
+.why-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;   /* mobile */
+  gap: 10px 18px;
+}
+
+@media (min-width: 992px){
+  .why-card-active .why-list{
+    grid-template-columns: 1fr 1fr; /* card lớn: 2 cột */
+  }
+  .why-card:not(.why-card-active) .why-list{
+    grid-template-columns: 1fr;     /* card nhỏ: 1 cột */
+  }
+}
+
+.why-list li{
+  position: relative;
+  padding-left: 26px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.55;
+}
+
+.why-list li::before{
+  content: "✓";
+  position:absolute;
+  left: 0;
+  top: 0;
+  color: #FF7A18;
+  font-weight: 900;
+  opacity: .95;
+}
+
+/* card active: nổi bật hơn xíu */
+.why-card-active{
+  border-color: rgba(255,122,24,.30);
+  background:
+    radial-gradient(1200px 320px at 12% 0%, rgba(255,122,24,.14), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+}
+
+
+/* Steps giống FAQ card */
+#steps .steps-wrapper{
+  gap: 18px;               /* nếu wrapper đang display:flex/column */
+}
+
+#steps .step-item.neo-privacy-card{
+  padding: 18px 18px;
+  border-radius: 16px;
+}
+
+#steps .step-content{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+#steps .step-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,122,24,.10);
+  border: 1px solid rgba(255,122,24,.30);
+  flex: 0 0 auto;
+}
+
+#steps .step-icon i{
+  font-size: 20px;
+  color: #FF7A18;
+}
+
+#steps .step-number{
+  color: rgba(255,122,24,.95);
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+#steps .step-info h3{
+  margin: 0 0 6px 0;
+}
+
+#steps .step-info p{
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+}
 
