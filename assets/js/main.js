@@ -885,3 +885,29 @@ const observer = new IntersectionObserver((entries) => {
 cards.forEach(card => {
   observer.observe(card);
 });
+
+const tabs = document.querySelectorAll(".tab");
+const contents = document.querySelectorAll(".tab-content");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+
+    // Nếu đã active thì không làm gì
+    if (tab.classList.contains("active")) return;
+
+    // Remove active khỏi tất cả
+    tabs.forEach(t => t.classList.remove("active"));
+    contents.forEach(c => c.classList.remove("active"));
+
+    // Add active cho tab hiện tại
+    tab.classList.add("active");
+
+    // Lấy content tương ứng
+    const target = document.getElementById(tab.dataset.tab);
+
+    if (target) {
+      target.classList.add("active");
+    }
+  });
+});
+
