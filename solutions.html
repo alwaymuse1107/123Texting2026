@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Solutions - 123 Texting</title>
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <!-- Page CSS -->
+  <link href="assets/css/solutions.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --default-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --heading-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --nav-font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    html, body { font-family: var(--default-font) !important; }
+    h1,h2,h3,h4,h5,h6 { font-family: var(--heading-font) !important; }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <!-- Header (reuse) -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">123 Texting</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="solutions.html" class="active">Solutions</a></li>
+          <li><a href="whychooseus.html">Why Choose us</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="contact.html">Get Started</a>
+    </div>
+  </header>
+
+  <main class="main sol-main">
+
+    <!-- HERO (WellSaid-like: label + H1 + sub + 2 CTA) -->
+    <section class="sol-hero">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center">
+            <div class="sol-pill">SOLUTIONS</div>
+
+            <h1 class="sol-title">
+              Communication Solutions Built for<br class="d-none d-lg-block">
+              <span class="sol-accent">Real Business Use Cases</span>
+            </h1>
+
+            <p class="sol-subtitle">
+              Power customer engagement, authentication, and operations with programmable phone calls and messaging—designed to scale across industries.
+            </p>
+
+            <p class="sol-supporting">
+              Our platform helps teams integrate reliable voice and messaging into their workflows, whether you’re securing transactions, supporting customers, or coordinating operations in real time.
+            </p>
+
+            <div class="sol-cta-row">
+              <a class="btn sol-btn-primary" href="contact.html">Try it now</a>
+              <a class="btn sol-btn-ghost" href="#use-cases">Book a demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sol-hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- 3 HIGHLIGHTS (like “Why …?” 3 columns) -->
+    <section class="sol-section sol-3up">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-4 justify-content-center">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="sol-feature">
+              <div class="sol-feature-icon"><i class="bi bi-lightning-charge"></i></div>
+              <h3>Create workflows faster</h3>
+              <p>Ship phone + messaging use cases quickly with clear building blocks and predictable behavior.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="sol-feature">
+              <div class="sol-feature-icon"><i class="bi bi-shield-check"></i></div>
+              <h3>Reliability & control</h3>
+              <p>Carrier-grade delivery, lifecycle tracking, and operational visibility across channels.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="sol-feature">
+              <div class="sol-feature-icon"><i class="bi bi-universal-access"></i></div>
+              <h3>Built to scale</h3>
+              <p>From startups to large teams—keep one platform as volume, regions, and complexity grow.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (simple list, clean) -->
+    <section class="sol-section sol-how">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row align-items-start g-4">
+          <div class="col-lg-5">
+            <div class="sol-kicker">How it works</div>
+            <h2 class="sol-h2">A platform built for real-world communication</h2>
+            <p class="sol-lead">
+              Integrate voice + messaging once, then compose use cases from reusable parts: calls, SMS/MMS, numbers, webhooks, and logs.
+            </p>
+          </div>
+
+          <div class="col-lg-7">
+            <ol class="sol-steps">
+              <li>
+                <div class="n">01</div>
+                <div class="t">
+                  <div class="h">Connect your application</div>
+                  <div class="p">Trigger calls or messages directly from your product, CRM, or workflow tools.</div>
+                </div>
+              </li>
+              <li>
+                <div class="n">02</div>
+                <div class="t">
+                  <div class="h">Route through reliable infrastructure</div>
+                  <div class="p">We handle delivery, retries, and operational tracking across telecom networks.</div>
+                </div>
+              </li>
+              <li>
+                <div class="n">03</div>
+                <div class="t">
+                  <div class="h">React in real time with webhooks</div>
+                  <div class="p">Capture events (delivered/failed/answered) to automate the next action instantly.</div>
+                </div>
+              </li>
+              <li>
+                <div class="n">04</div>
+                <div class="t">
+                  <div class="h">Observe & optimize</div>
+                  <div class="p">Use logs to diagnose issues, improve deliverability, and scale with confidence.</div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES (cards + accordion details) -->
+    <section id="use-cases" class="sol-section sol-usecases">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="sol-section-head">
+          <div class="sol-kicker">Solutions by use case</div>
+          <h2 class="sol-h2">Pick a workflow. Build it fast.</h2>
+          <p class="sol-lead">Each use case includes “How it works”, common scenarios, and products used.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- 1 -->
+          <div class="col-lg-6">
+            <article class="uc-card">
+              <header class="uc-head">
+                <div class="uc-icon">🔐</div>
+                <div>
+                  <h3>Authentication &amp; Security</h3>
+                  <p>Secure user access with phone calls and SMS. Deliver OTP, verification codes, and alerts through trusted channels.</p>
+                </div>
+              </header>
+
+              <div class="accordion sol-acc" id="acc1">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                      How it works
+                    </button>
+                  </h2>
+                  <div id="c1" class="accordion-collapse collapse" data-bs-parent="#acc1">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Send OTP via SMS for fast verification</li>
+                        <li>Use phone calls as a fallback when SMS fails</li>
+                        <li>Track delivery and verification events in real time</li>
+                      </ul>
+                      <div class="uc-products">
+                        <span class="pill">Phone Call</span>
+                        <span class="pill">Messaging (SMS)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1b">
+                      Common scenarios
+                    </button>
+                  </h2>
+                  <div id="c1b" class="accordion-collapse collapse" data-bs-parent="#acc1">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Login verification</li>
+                        <li>Account recovery</li>
+                        <li>Transaction confirmation</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+          </div>
+
+          <!-- 2 -->
+          <div class="col-lg-6">
+            <article class="uc-card">
+              <header class="uc-head">
+                <div class="uc-icon">📞</div>
+                <div>
+                  <h3>Customer Support &amp; Contact Centers</h3>
+                  <p>Enable inbound/outbound calls, automate routing, and reduce agent workload with intelligent call flows.</p>
+                </div>
+              </header>
+
+              <div class="accordion sol-acc" id="acc2">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+                      How it works
+                    </button>
+                  </h2>
+                  <div id="c2" class="accordion-collapse collapse" data-bs-parent="#acc2">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Customers call your support number</li>
+                        <li>Calls are routed via IVR or logic rules</li>
+                        <li>Agents or bots handle requests efficiently</li>
+                      </ul>
+                      <div class="uc-products">
+                        <span class="pill">Phone Call</span>
+                        <span class="pill">Phone Numbers</span>
+                        <span class="pill">Webhooks</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2b">
+                      Common scenarios
+                    </button>
+                  </h2>
+                  <div id="c2b" class="accordion-collapse collapse" data-bs-parent="#acc2">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Customer service hotlines</li>
+                        <li>Call routing and escalation</li>
+                        <li>Automated voice menus</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 3 -->
+          <div class="col-lg-6">
+            <article class="uc-card">
+              <header class="uc-head">
+                <div class="uc-icon">🔔</div>
+                <div>
+                  <h3>Notifications &amp; Alerts</h3>
+                  <p>Use SMS and voice calls to notify users about critical events and updates—fast and reliable.</p>
+                </div>
+              </header>
+
+              <div class="accordion sol-acc" id="acc3">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
+                      How it works
+                    </button>
+                  </h2>
+                  <div id="c3" class="accordion-collapse collapse" data-bs-parent="#acc3">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Trigger messages directly from your application</li>
+                        <li>Deliver alerts via SMS or phone call</li>
+                        <li>Monitor delivery and response status</li>
+                      </ul>
+                      <div class="uc-products">
+                        <span class="pill">Messaging (SMS/MMS)</span>
+                        <span class="pill">Phone Call</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3b">
+                      Common scenarios
+                    </button>
+                  </h2>
+                  <div id="c3b" class="accordion-collapse collapse" data-bs-parent="#acc3">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Payment and billing alerts</li>
+                        <li>System outages or incidents</li>
+                        <li>Appointment reminders</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 4 -->
+          <div class="col-lg-6">
+            <article class="uc-card">
+              <header class="uc-head">
+                <div class="uc-icon">🛒</div>
+                <div>
+                  <h3>E-Commerce &amp; Marketplace Communication</h3>
+                  <p>Enable real-time communication without exposing personal phone numbers.</p>
+                </div>
+              </header>
+
+              <div class="accordion sol-acc" id="acc4">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4">
+                      How it works
+                    </button>
+                  </h2>
+                  <div id="c4" class="accordion-collapse collapse" data-bs-parent="#acc4">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Assign temporary phone numbers</li>
+                        <li>Route calls and messages between parties</li>
+                        <li>Automatically expire numbers after transactions</li>
+                      </ul>
+                      <div class="uc-products">
+                        <span class="pill">Phone Call</span>
+                        <span class="pill">Messaging</span>
+                        <span class="pill">Phone Numbers</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4b">
+                      Common scenarios
+                    </button>
+                  </h2>
+                  <div id="c4b" class="accordion-collapse collapse" data-bs-parent="#acc4">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Buyer–seller communication</li>
+                        <li>Delivery coordination</li>
+                        <li>Order status updates</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 5 -->
+          <div class="col-lg-6">
+            <article class="uc-card">
+              <header class="uc-head">
+                <div class="uc-icon">🏥</div>
+                <div>
+                  <h3>Appointments &amp; Scheduling</h3>
+                  <p>Send reminders and confirmations via SMS or phone calls to improve attendance and efficiency.</p>
+                </div>
+              </header>
+
+              <div class="accordion sol-acc" id="acc5">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5">
+                      How it works
+                    </button>
+                  </h2>
+                  <div id="c5" class="accordion-collapse collapse" data-bs-parent="#acc5">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Send SMS reminders before appointments</li>
+                        <li>Follow up with automated phone calls</li>
+                        <li>Allow confirmations via keypad or reply</li>
+                      </ul>
+                      <div class="uc-products">
+                        <span class="pill">Phone Call</span>
+                        <span class="pill">Messaging</span>
+                        <span class="pill">Webhooks</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5b">
+                      Common scenarios
+                    </button>
+                  </h2>
+                  <div id="c5b" class="accordion-collapse collapse" data-bs-parent="#acc5">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Healthcare appointments</li>
+                        <li>Professional services scheduling</li>
+                        <li>Field service visits</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 6 -->
+          <div class="col-lg-6">
+            <article class="uc-card">
+              <header class="uc-head">
+                <div class="uc-icon">🤖</div>
+                <div>
+                  <h3>Automation &amp; AI-Driven Communication</h3>
+                  <p>Combine APIs and events to create automated communication experiences powered by logic or AI.</p>
+                </div>
+              </header>
+
+              <div class="accordion sol-acc" id="acc6">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6">
+                      How it works
+                    </button>
+                  </h2>
+                  <div id="c6" class="accordion-collapse collapse" data-bs-parent="#acc6">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Trigger calls or messages programmatically</li>
+                        <li>React to events with webhooks</li>
+                        <li>Integrate bots or AI systems</li>
+                      </ul>
+                      <div class="uc-products">
+                        <span class="pill">Phone Call</span>
+                        <span class="pill">Messaging</span>
+                        <span class="pill">Webhooks</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6b">
+                      Common scenarios
+                    </button>
+                  </h2>
+                  <div id="c6b" class="accordion-collapse collapse" data-bs-parent="#acc6">
+                    <div class="accordion-body">
+                      <ul class="uc-list">
+                        <li>Voice bots and assistants</li>
+                        <li>Automated follow-ups</li>
+                        <li>Smart routing and escalation</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY THESE WORK (4 mini cards) -->
+    <section class="sol-section sol-why">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="sol-section-head">
+          <div class="sol-kicker">Why these solutions work</div>
+          <h2 class="sol-h2">Built for teams who ship and scale</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="mini-card">
+              <h4>Designed for Scale</h4>
+              <p>Built on carrier-grade infrastructure to support high-volume communication.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="mini-card">
+              <h4>Flexible by Design</h4>
+              <p>APIs and events let you adapt workflows without changing hardware or providers.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="mini-card">
+              <h4>Reliable &amp; Observable</h4>
+              <p>Track every call, message, and webhook event in one place.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="mini-card">
+              <h4>Built for Teams</h4>
+              <p>Works for both business operators and engineering teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sol-section sol-final">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="sol-final-box">
+          <div>
+            <h2>Build Communication Solutions That Scale with Your Business</h2>
+            <p>
+              Whether you’re securing users, supporting customers, or automating operations, our platform provides the tools you need to deliver reliable communication experiences.
+            </p>
+          </div>
+          <a class="btn sol-btn-primary" href="contact.html">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (reuse) -->
+  <footer id="footer" class="footer">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">123 Texting</span>
+          </a>
+          <p>Add later</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Later</a></li>
+            <li><a href="#">Later</a></li>
+            <li><a href="#">Later</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Later</a></li>
+            <li><a href="#">Later</a></li>
+            <li><a href="#">Later</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">123 Texting</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
