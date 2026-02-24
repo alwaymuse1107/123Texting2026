@@ -853,3 +853,61 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  reveals.forEach(section => {
+    const windowHeight = window.innerHeight;
+    const elementTop = section.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      section.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+const cards = document.querySelectorAll('.highlight-card');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('active');
+      }, index * 150); // stagger effect
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+cards.forEach(card => {
+  observer.observe(card);
+});
+
+const tabs = document.querySelectorAll(".tab");
+const contents = document.querySelectorAll(".tab-content");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+
+    // Nếu đã active thì không làm gì
+    if (tab.classList.contains("active")) return;
+
+    // Remove active khỏi tất cả
+    tabs.forEach(t => t.classList.remove("active"));
+    contents.forEach(c => c.classList.remove("active"));
+
+    // Add active cho tab hiện tại
+    tab.classList.add("active");
+
+    // Lấy content tương ứng
+    const target = document.getElementById(tab.dataset.tab);
+
+    if (target) {
+      target.classList.add("active");
+    }
+  });
+});
+
