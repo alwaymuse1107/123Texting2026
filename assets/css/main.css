@@ -5569,7 +5569,7 @@ a {
   font-size: 52px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin 0;
+  margin: 0;
 }
 .why-cta-box h2 .accent{ color: var(--accent); }
 .why-cta-box p{
@@ -5590,4 +5590,250 @@ a {
 .why-reasons .row > [class*="col-lg-6"]{
   flex: 0 0 100% !important;
   max-width: 100% !important;
+}
+
+
+/* =========================
+   SOLUTIONS PAGE (6 cards hover reveal)
+   ========================= */
+
+/* page background */
+.solutions-page .main {
+  background: #0A0A0A;
+}
+
+.solutions-hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 130px; /* tránh header fixed-top */
+  padding-bottom: 80px;
+  background: radial-gradient(1200px 600px at 80% 15%, rgba(255, 122, 24, 0.35), transparent 65%),
+              radial-gradient(900px 500px at 20% 40%, rgba(255, 122, 24, 0.18), transparent 70%),
+              #0A0A0A;
+  overflow: hidden;
+}
+
+/* subtle grain layer */
+.solutions-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* heading */
+.solutions-head {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin-bottom: 28px;
+}
+
+.solutions-title {
+  color: rgba(255,255,255,0.95);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  font-size: clamp(30px, 4.2vw, 52px);
+  line-height: 1.06;
+  margin: 0 0 12px 0;
+}
+
+.solutions-title .accent {
+  color: #FF7A18;
+}
+
+.solutions-subtitle {
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  font-size: 15.5px;
+  max-width: 760px;
+}
+
+/* grid */
+.solutions-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+  .solutions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 576px) {
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* card base */
+.sol-card {
+  position: relative;
+  border: 1px solid rgba(255, 122, 24, 0.55);
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 0; /* giống ảnh: vuông */
+  min-height: 260px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.sol-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 18px 18px 62px 18px; /* chừa chỗ góc số */
+}
+
+/* front content */
+.sol-front-title {
+  color: rgba(255,255,255,0.95);
+  font-size: 22px;
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+}
+
+.sol-front-desc {
+  color: #FF7A18 !important; 
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 92%;
+}
+
+/* back content (hidden by default) */
+.sol-back {
+  position: absolute;
+  inset: 14px 14px 56px 14px;
+  padding: 14px 14px 12px 14px;
+  background: rgba(0,0,0,0.82);
+  border: none !important;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .22s ease, transform .22s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sol-back-label {
+  color: #FF7A18;
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.sol-back-block {
+  margin-bottom: 12px;
+}
+
+.sol-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.sol-list li {
+  color: rgba(255,255,255,0.80);
+  font-size: 12.8px;
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.sol-back-foot {
+  margin-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sol-foot-label {
+  color: #FF7A18;
+  font-weight: 800;
+  font-size: 12px;
+}
+.sol-foot-value {
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+}
+
+/* hover reveal */
+.sol-card:hover .sol-back,
+.sol-card:focus .sol-back,
+.sol-card.is-open .sol-back {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* corner number */
+.sol-corner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 46px;
+  width: 74px;
+  background: #FF7A18;
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  gap: 10px;
+  clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+}
+
+.sol-num {
+  color: rgba(255,255,255,0.95);
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* small notch to feel like your sample */
+.sol-notch {
+  width: 1px;
+  height: 20px;
+  background: rgba(0,0,0,0.25);
+}
+
+/* micro interactions */
+.sol-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* a11y focus */
+.sol-card:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 122, 24, 0.35), 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.sol-back{
+  /* Cho back phủ gần full khung */
+  inset: 14px 14px 60px 14px;   /* chừa đáy cho góc số */
+  padding: 16px 16px 14px 16px;
+
+  /* QUAN TRỌNG: không cắt nội dung */
+  overflow: auto !important;     /* nội dung dài thì scroll */
+  max-height: calc(100% - 74px); /* đảm bảo không đè lên góc số */
+
+  /* tắt viền trong */
+  border: none !important;
+}
+
+/* cho scrollbar nhìn gọn */
+.sol-back::-webkit-scrollbar{ width: 8px; }
+.sol-back::-webkit-scrollbar-thumb{
+  background: rgba(255,122,24,0.35);
+  border-radius: 10px;
+}
+.sol-back::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.06);
 }
