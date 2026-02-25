@@ -5837,3 +5837,135 @@ a {
 .sol-back::-webkit-scrollbar-track{
   background: rgba(255,255,255,0.06);
 }
+
+/* =========================
+   WHY THESE SOLUTIONS WORK (timeline)
+   ========================= */
+
+.sol-proof{
+  position: relative;
+  padding: 110px 0;
+  background: radial-gradient(900px 520px at 18% 20%, rgba(255, 122, 24, 0.18), transparent 65%),
+              radial-gradient(900px 520px at 85% 55%, rgba(255, 122, 24, 0.12), transparent 70%),
+              #0A0A0A;
+}
+
+.sol-proof-head{
+  margin-top: 100px;
+  max-width: 880px;
+  margin-bottom: 40px;
+}
+
+.sol-proof-title{
+  margin: 0 0 10px 0;
+  color: rgba(255,255,255,0.95);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  font-size: clamp(26px, 3.3vw, 40px);
+  line-height: 1.1;
+}
+
+.sol-proof-title .accent{
+  color: #FF7A18;
+}
+
+.sol-proof-subtitle{
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 14.5px;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+/* timeline wrap */
+.sol-proof-timeline{
+  position: relative;
+  margin-top: 26px;
+  display: grid;
+  gap: 16px;
+}
+
+/* vertical line */
+.sol-proof-timeline::before{
+  content:"";
+  position: absolute;
+  left: 18px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,122,24,0.05),
+    rgba(255,122,24,0.55),
+    rgba(255,122,24,0.10)
+  );
+}
+
+/* each item */
+.sol-proof-item{
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  align-items: start;
+  column-gap: 14px;
+}
+
+/* number node */
+.sol-proof-node{
+  position: relative;
+  width: 38px;
+  height: 38px;
+  margin-left: -1px;
+  border-radius: 999px;
+  background: rgba(255, 122, 24, 0.12);
+  border: 1px solid rgba(255, 122, 24, 0.55);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+
+.sol-proof-num{
+  color: rgba(255,255,255,0.95);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+}
+
+/* card */
+.sol-proof-card{
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255, 122, 24, 0.40);
+  padding: 12px 14px 11px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+}
+
+.sol-proof-h{
+  margin: 0 0 8px 0;
+  color: rgba(255,255,255,0.95);
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.sol-proof-p{
+  margin: 0;
+  color: rgba(255,255,255,0.75);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* hover feel (optional) */
+.sol-proof-item:hover .sol-proof-card{
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+.sol-proof-item:hover .sol-proof-node{
+  background: rgba(255, 122, 24, 0.18);
+}
+
+/* responsive */
+@media (max-width: 576px){
+  .sol-proof-timeline{ gap: 10px; margin-top: 18px; }
+  .sol-proof-item{ grid-template-columns: 50px 1fr; }
+  .sol-proof-card{ padding: 14px 14px 12px; }
+}
