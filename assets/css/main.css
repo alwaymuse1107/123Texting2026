@@ -4281,6 +4281,70 @@ section,
   text-decoration: none;
 }
 
+
+.capabilities-puzzle {
+  background: radial-gradient(circle at center, #1A0F08 0%, #0A0A0A 60%, #000 100%);
+  padding: 140px 0;
+  text-align: center;
+  color: #DDE6F2;
+  position: relative;
+}
+
+.title {
+  letter-spacing: 4px;
+  font-weight: 500;
+  font-size: 28px;
+  opacity: 0.85;
+}
+
+.puzzle-wrapper {
+  width: 600px;
+  margin: 80px auto;
+  position: relative;
+}
+
+.puzzle-svg {
+  width: 100%;
+  height: auto;
+}
+
+.piece {
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 2;
+  transition: all 0.4s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+
+.puzzle-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -70px;
+  background: radial-gradient(circle, rgba(255,122,24,0.25), transparent 60%);
+  filter: blur(70px);
+  z-index: -1;
+}
+
+.piece:hover {
+  transform: scale(1.07);
+  transform-origin: center;
+  filter: brightness(1.2) saturate(1.2);
+}
+
+/* center energy core */
+.core-glow {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,245,255,0.4), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+
+
 /* ============================= */
 /* TECHNICAL SECTION REDESIGN */
 /* ============================= */

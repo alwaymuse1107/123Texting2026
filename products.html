@@ -167,30 +167,100 @@
 </section>
 
 <!-- CAPABILITIES -->
-<section class="capabilities">
+<section class="capabilities-puzzle">
   <div class="container">
-    <h2>Core Capabilities</h2>
+    <h2 class="title">CORE CAPABILITIES</h2>
 
-    <div class="cap-grid">
-      <div class="cap-card">
-        <h3>Outbound Calling</h3>
-        <p>Trigger phone calls programmatically to customers worldwide.</p>
-      </div>
+    <div class="puzzle-wrapper">
+      <svg viewBox="0 0 600 600" class="puzzle-svg">
+      <defs>
 
-      <div class="cap-card">
-        <h3>Inbound Calling</h3>
-        <p>Provision numbers and dynamically route incoming calls.</p>
-      </div>
+        <!-- Bright Orange -->
+        <linearGradient id="grad-orange-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFB347"/>
+          <stop offset="100%" stop-color="#FF7A18"/>
+        </linearGradient>
 
-      <div class="cap-card">
-        <h3>Call Control</h3>
-        <p>Answer, transfer, record, or hang up calls in real time.</p>
-      </div>
+        <!-- Deep Orange -->
+        <linearGradient id="grad-orange-2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF7A18"/>
+          <stop offset="100%" stop-color="#FF4D00"/>
+        </linearGradient>
 
-      <div class="cap-card">
-        <h3>IVR & Automation</h3>
-        <p>Build interactive voice menus powered by business logic.</p>
-      </div>
+        <!-- Dark Burnt -->
+        <linearGradient id="grad-orange-3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#C2410C"/>
+          <stop offset="100%" stop-color="#7C2D12"/>
+        </linearGradient>
+
+        <!-- Dark Graphite -->
+          <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7C2D12"/>
+          <stop offset="100%" stop-color="#3B1A0E"/>
+        </linearGradient>
+
+        <!-- Neon glow -->
+        <filter id="orange-glow">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+      </defs>
+
+
+        <!-- TOP -->
+        <path class="piece piece-1"
+        fill="url(#grad-orange-1)"
+          filter="url(#orange-glow)"
+          d="M300 40 C450 40 560 150 560 300 L420 300
+             C400 260 360 260 340 300
+             L260 300
+             C240 260 200 260 180 300
+             L40 300
+             C40 150 150 40 300 40 Z" />
+
+        <!-- RIGHT -->
+        <path class="piece piece-2"
+        fill="url(#grad-orange-2)"
+        filter="url(#orange-glow)"
+          d="M560 300 C560 450 450 560 300 560
+             L300 420
+             C340 400 340 360 300 340
+             L300 260
+             C340 240 340 200 300 180
+             L300 40
+             C450 40 560 150 560 300 Z" />
+
+        <!-- BOTTOM -->
+        <path class="piece piece-3"
+          fill="url(#grad-orange-3)"
+          d="M300 560 C150 560 40 450 40 300
+             L180 300
+             C200 340 240 340 260 300
+             L340 300
+             C360 340 400 340 420 300
+             L560 300
+             C560 450 450 560 300 560 Z" />
+
+        <!-- LEFT -->
+        <path class="piece piece-4"
+            fill="url(#grad-dark)"
+          d="M40 300 C40 150 150 40 300 40
+             L300 180
+             C260 200 260 240 300 260
+             L300 340
+             C260 360 260 400 300 420
+             L300 560
+             C150 560 40 450 40 300 Z" />
+
+      </svg>
+
+      <!-- Core glow center -->
+      <div class="core-glow"></div>
+
     </div>
   </div>
 </section>
