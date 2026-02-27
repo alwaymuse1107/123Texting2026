@@ -5968,18 +5968,19 @@ a {
 /* each item */
 .sol-proof-item{
   position: relative;
+  padding: 10px 0; 
   display: grid;
   grid-template-columns: 52px 1fr;
   align-items: start;
-  column-gap: 14px;
+  column-gap: 40px;
 }
 
 /* number node */
 .sol-proof-node{
   position: relative;
-  width: 38px;
-  height: 38px;
-  margin-left: -1px;
+  width: 88px;
+  height: 88px;
+  margin-left: -28px;
   border-radius: 999px;
   background: rgba(255, 122, 24, 0.12);
   border: 1px solid rgba(255, 122, 24, 0.55);
@@ -5991,7 +5992,7 @@ a {
 .sol-proof-num{
   color: rgba(255,255,255,0.95);
   font-weight: 900;
-  font-size: 12px;
+  font-size: 30px;
   letter-spacing: 0.6px;
 }
 
@@ -6005,9 +6006,9 @@ a {
 
 .sol-proof-h{
   margin: 0 0 8px 0;
-  color: rgba(255,255,255,0.95);
+  color: #FF7A18;
   font-weight: 800;
-  font-size: 17px;
+  font-size: 25px;
   line-height: 1.2;
 }
 
@@ -6029,7 +6030,7 @@ a {
 
 /* responsive */
 @media (max-width: 576px){
-  .sol-proof-timeline{ gap: 10px; margin-top: 18px; }
+  .sol-proof-timeline{ gap: 26px; margin-top: 18px; }
   .sol-proof-item{ grid-template-columns: 50px 1fr; }
-  .sol-proof-card{ padding: 14px 14px 12px; }
+  .sol-proof-card{ padding: 20px 20px 20px; }
 }
